@@ -1,7 +1,5 @@
 "use client";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { motion } from "framer-motion";
 import { useState } from "react";
 import {
@@ -20,7 +18,6 @@ import {
   GraduationCap,
   FileText,
   Trophy,
-  ArrowRight,
   MapPin,
   Github,
   Linkedin,
@@ -29,36 +26,12 @@ import {
   Send,
   User,
   MessageSquare,
-  X,
-  Play,
-  ExternalLink,
-  Calendar,
-  Target,
-  Users,
-  Zap,
+  Lightbulb,
+  TrendingUp,
+  ArrowRight,
 } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  gallery?: string[];
-  video?: string;
-  tech: string[];
-  status: string;
-  date: string;
-  objectives: string[];
-  benefits: string[];
-  features: string[];
-  challenges: string;
-  impact: string;
-  demoUrl?: string;
-  sourceUrl?: string;
-}
 
 const categories = [
   {
@@ -89,45 +62,45 @@ const categories = [
         icon: Globe,
         description: "English learning and teaching projects",
         image: "/projects/english-preview.jpg",
-        projects: [
-          {
-            id: "grammar-tutor",
-            title: "Interactive Grammar Tutor",
-            description:
-              "AI-powered grammar learning platform with real-time feedback",
-            image: "/projects/grammar-tutor.jpg",
-            gallery: [
-              "/projects/grammar-tutor-1.jpg",
-              "/projects/grammar-tutor-2.jpg",
-              "/projects/grammar-tutor-3.jpg",
-            ],
-            video: "/projects/grammar-tutor-demo.mp4",
-            tech: ["React", "Node.js", "AI/ML", "MongoDB"],
-            status: "Completed",
-            date: "2024",
-            objectives: [
-              "Improve English grammar understanding",
-              "Provide personalized learning experience",
-              "Real-time feedback and corrections",
-            ],
-            benefits: [
-              "Adaptive learning algorithms",
-              "Interactive exercises",
-              "Progress tracking",
-              "Gamified learning experience",
-            ],
-            features: [
-              "AI-powered grammar analysis",
-              "Real-time error detection",
-              "Personalized learning paths",
-              "Progress analytics",
-              "Mobile-responsive design",
-            ],
-            challenges:
-              "Developing accurate grammar analysis algorithms and creating engaging user interfaces",
-            impact:
-              "Improved grammar skills for 1000+ users with 85% completion rate",
-          },
+        overview:
+          "English Language learning encompasses comprehensive methodologies dan technologies untuk menguasai bahasa Inggris sebagai bahasa internasional yang paling banyak digunakan dalam komunikasi global, bisnis, dan teknologi.",
+        history:
+          "Pembelajaran bahasa Inggris modern dimulai dengan metode Grammar-Translation pada abad ke-19, berkembang menjadi Direct Method, lalu Audio-Lingual pada 1950-an, dan kini menggunakan Communicative Language Teaching yang diperkuat dengan teknologi AI dan aplikasi mobile.",
+        technologies: [
+          "AI/ML untuk personalized learning",
+          "Natural Language Processing (NLP)",
+          "Speech Recognition dan Text-to-Speech",
+          "Adaptive Learning Algorithms",
+          "Mobile Learning Apps (React Native, Flutter)",
+          "Web-based Learning Platforms (React, Vue.js)",
+          "Gamification Engines",
+          "Progress Tracking Systems",
+        ],
+        applications: [
+          "Grammar correction dan analysis tools",
+          "Vocabulary building applications",
+          "Pronunciation training dengan AI feedback",
+          "Reading comprehension platforms",
+          "Writing assistant tools",
+          "Speaking practice dengan chatbots",
+          "TOEFL/IELTS preparation systems",
+          "Business English training platforms",
+        ],
+        currentTrends: [
+          "AI-powered personalized learning paths",
+          "Immersive VR language learning environments",
+          "Microlearning dengan bite-sized lessons",
+          "Social learning platforms dengan peer interaction",
+          "Adaptive assessment systems",
+          "Multimodal learning (visual, audio, kinesthetic)",
+        ],
+        challenges: [
+          "Accent variation - Handling different English accents",
+          "Context understanding - Teaching appropriate usage",
+          "Motivation - Maintaining learner engagement",
+          "Cultural context - Teaching language dalam cultural setting",
+          "Individual pace - Accommodating different learning speeds",
+          "Assessment accuracy - Measuring true language proficiency",
         ],
       },
       {
@@ -135,45 +108,45 @@ const categories = [
         icon: Globe,
         description: "Arabic language learning resources",
         image: "/projects/arabic-preview.jpg",
-        projects: [
-          {
-            id: "arabic-alphabet",
-            title: "Interactive Arabic Alphabet",
-            description:
-              "Comprehensive Arabic alphabet learning app with pronunciation guides",
-            image: "/projects/arabic-alphabet.jpg",
-            gallery: [
-              "/projects/arabic-alphabet-1.jpg",
-              "/projects/arabic-alphabet-2.jpg",
-              "/projects/arabic-alphabet-3.jpg",
-            ],
-            video: "/projects/arabic-alphabet-demo.mp4",
-            tech: ["React Native", "Audio Processing", "Animation", "SQLite"],
-            status: "Completed",
-            date: "2023",
-            objectives: [
-              "Teach Arabic alphabet systematically",
-              "Provide accurate pronunciation guides",
-              "Create engaging learning experience",
-            ],
-            benefits: [
-              "Interactive alphabet cards",
-              "Native speaker pronunciation",
-              "Writing practice guides",
-              "Progress tracking system",
-            ],
-            features: [
-              "Audio pronunciation for each letter",
-              "Interactive writing practice",
-              "Letter recognition games",
-              "Cultural context integration",
-              "Offline learning capability",
-            ],
-            challenges:
-              "Implementing accurate Arabic text rendering and pronunciation synthesis for non-native learners",
-            impact:
-              "Helped 500+ students master Arabic alphabet with 90% retention rate",
-          },
+        overview:
+          "Arabic Language learning focuses pada penguasaan bahasa Arab sebagai bahasa liturgi Islam dan bahasa resmi 22 negara, dengan emphasis pada penguasaan script, grammar, dan cultural context yang unique.",
+        history:
+          "Pembelajaran bahasa Arab dimulai dengan tradisi hafalan Al-Quran, berkembang dengan metode klasik nahw dan sarf pada abad ke-8, dan kini mengintegrasikan teknologi modern untuk non-native speakers dengan focus pada practical communication skills.",
+        technologies: [
+          "Arabic OCR dan text recognition",
+          "Right-to-left text processing",
+          "Arabic speech synthesis dan recognition",
+          "Diacritics (harakat) processing systems",
+          "Arabic keyboard input methods",
+          "Morphological analysis tools",
+          "Arabic-specific learning platforms",
+          "Cultural context integration systems",
+        ],
+        applications: [
+          "Arabic alphabet learning dengan interactive writing",
+          "Quranic Arabic comprehension tools",
+          "Modern Standard Arabic (MSA) learning",
+          "Dialect-specific learning (Egyptian, Levantine, Gulf)",
+          "Arabic calligraphy digital tools",
+          "Arabic literature reading platforms",
+          "Business Arabic communication training",
+          "Arabic-English translation tools",
+        ],
+        currentTrends: [
+          "AI-powered Arabic diacritization",
+          "Cultural immersion through digital platforms",
+          "Arabic content creation tools",
+          "Cross-cultural communication training",
+          "Heritage language preservation programs",
+          "Arabic for specific purposes (business, academic)",
+        ],
+        challenges: [
+          "Script complexity - Mastering Arabic writing system",
+          "Dialectal variation - Managing multiple Arabic dialects",
+          "Cultural sensitivity - Teaching appropriate cultural context",
+          "Technical challenges - Right-to-left text processing",
+          "Resource scarcity - Quality Arabic learning materials",
+          "Pronunciation accuracy - Correctly producing Arabic sounds",
         ],
       },
       {
@@ -181,45 +154,45 @@ const categories = [
         icon: Globe,
         description: "Korean language study materials",
         image: "/projects/korean-preview.jpg",
-        projects: [
-          {
-            id: "hangul-master",
-            title: "Hangul Master",
-            description:
-              "Complete Korean writing system learning platform with K-pop integration",
-            image: "/projects/hangul-master.jpg",
-            gallery: [
-              "/projects/hangul-master-1.jpg",
-              "/projects/hangul-master-2.jpg",
-              "/projects/hangul-master-3.jpg",
-            ],
-            video: "/projects/hangul-master-demo.mp4",
-            tech: ["Vue.js", "Node.js", "WebRTC", "MongoDB"],
-            status: "Completed",
-            date: "2023",
-            objectives: [
-              "Master Hangul writing system",
-              "Integrate popular culture learning",
-              "Build Korean language foundation",
-            ],
-            benefits: [
-              "Stroke order animation",
-              "K-pop lyric learning",
-              "Real-time pronunciation check",
-              "Cultural immersion content",
-            ],
-            features: [
-              "Animated stroke order guides",
-              "K-pop song lyric practice",
-              "Speech recognition feedback",
-              "Korean drama subtitle training",
-              "Community practice rooms",
-            ],
-            challenges:
-              "Integrating entertainment content while maintaining educational effectiveness and copyright compliance",
-            impact:
-              "Engaged 2000+ K-culture enthusiasts in serious Korean language study",
-          },
+        overview:
+          "Korean Language learning telah mengalami boom global berkat Korean Wave (Hallyu), dengan focus pada Hangul mastery, grammar patterns, dan cultural integration melalui K-pop, K-drama, dan Korean entertainment content.",
+        history:
+          "Hangul diciptakan pada 1443 oleh Raja Sejong the Great. Pembelajaran bahasa Korea modern berkembang pesat sejak 1990-an dengan Korean Wave, dan mencapai puncak popularity pada 2010-an dengan global spread dari K-pop dan K-drama.",
+        technologies: [
+          "Hangul recognition dan input systems",
+          "Korean speech processing",
+          "K-content integration platforms",
+          "Korean grammar pattern analysis",
+          "Cultural context learning systems",
+          "Korean-specific mobile keyboards",
+          "Subtitle-based learning tools",
+          "Korean media content integration",
+        ],
+        applications: [
+          "Hangul writing system mastery",
+          "K-pop lyric-based vocabulary learning",
+          "K-drama subtitle learning platforms",
+          "Korean grammar pattern recognition",
+          "Korean culture dan etiquette training",
+          "TOPIK (Test of Proficiency in Korean) preparation",
+          "Korean business communication training",
+          "Korean cooking dan lifestyle vocabulary",
+        ],
+        currentTrends: [
+          "K-content integrated learning - Using popular media",
+          "Gamified Korean learning dengan K-pop elements",
+          "Virtual Korean cultural experiences",
+          "AI-powered Korean conversation practice",
+          "Korean heritage language programs",
+          "Professional Korean untuk career development",
+        ],
+        challenges: [
+          "Honorific system complexity - Mastering formal/informal speech",
+          "Cultural nuances - Understanding Korean social hierarchy",
+          "Entertainment vs education - Balancing fun dengan serious learning",
+          "Pronunciation accuracy - Korean specific sounds",
+          "Grammar complexity - Korean sentence structure",
+          "Motivation sustainability - Maintaining interest post-initial enthusiasm",
         ],
       },
     ],
@@ -252,46 +225,45 @@ const categories = [
         icon: Eye,
         description: "AR applications and experiences",
         image: "/projects/ar-preview.jpg",
-        projects: [
-          {
-            id: "ar-shopping",
-            title: "AR Shopping Assistant",
-            description:
-              "Virtual try-on and product visualization for e-commerce",
-            image: "/projects/ar-shopping.jpg",
-            gallery: [
-              "/projects/ar-shopping-1.jpg",
-              "/projects/ar-shopping-2.jpg",
-              "/projects/ar-shopping-3.jpg",
-              "/projects/ar-shopping-4.jpg",
-            ],
-            video: "/projects/ar-shopping-demo.mp4",
-            tech: ["Unity", "ARCore", "C#", "Android SDK", "Firebase"],
-            status: "Completed",
-            date: "2024",
-            objectives: [
-              "Enhance online shopping experience",
-              "Reduce product return rates",
-              "Increase customer engagement",
-            ],
-            benefits: [
-              "Virtual try-on capabilities",
-              "Realistic product visualization",
-              "Interactive shopping experience",
-              "Reduced uncertainty in online purchases",
-            ],
-            features: [
-              "3D product visualization",
-              "Virtual try-on for clothing and accessories",
-              "Real-time product placement",
-              "Social sharing capabilities",
-              "Purchase integration",
-            ],
-            challenges:
-              "Achieving accurate 3D tracking and realistic rendering while maintaining performance on mobile devices",
-            impact:
-              "Increased conversion rates by 40% and reduced returns by 25% for partner retailers",
-          },
+        overview:
+          "Augmented Reality (AR) adalah teknologi yang menggabungkan dunia nyata dengan elemen digital, menciptakan pengalaman interaktif yang mengubah cara kita berinteraksi dengan lingkungan sekitar.",
+        history:
+          "AR pertama kali dikembangkan pada tahun 1968 oleh Ivan Sutherland dengan perangkat 'The Sword of Damocles'. Perkembangan signifikan terjadi pada 1990-an dengan istilah 'Augmented Reality' yang diciptakan oleh Tom Caudell. Era modern AR dimulai dengan peluncuran ARToolkit pada 1999 dan mencapai puncaknya dengan ARCore (Google) dan ARKit (Apple) pada 2017.",
+        technologies: [
+          "ARCore (Google) - Platform AR untuk Android",
+          "ARKit (Apple) - Framework AR untuk iOS",
+          "Unity 3D - Engine untuk pengembangan aplikasi AR",
+          "Vuforia - Platform AR enterprise",
+          "8th Wall - AR berbasis web",
+          "WebXR - Standar web untuk AR/VR",
+          "OpenCV - Computer vision library",
+          "SLAM - Simultaneous Localization and Mapping",
+        ],
+        applications: [
+          "E-commerce - Virtual try-on dan product visualization",
+          "Pendidikan - Interactive learning dan virtual laboratories",
+          "Healthcare - Surgical planning dan medical training",
+          "Manufacturing - Assembly guidance dan quality control",
+          "Entertainment - Gaming dan interactive experiences",
+          "Marketing - Interactive advertising campaigns",
+          "Navigation - AR-based GPS dan indoor navigation",
+          "Social Media - AR filters dan effects",
+        ],
+        currentTrends: [
+          "WebAR - AR yang berjalan di browser tanpa aplikasi",
+          "Cloud-based AR - Processing di cloud untuk performa optimal",
+          "AI-powered AR - Integrasi machine learning dan computer vision",
+          "Social AR - Shared AR experiences untuk multiple users",
+          "Industrial AR - Aplikasi untuk manufacturing dan maintenance",
+          "AR Glass - Wearable AR devices seperti HoloLens dan Magic Leap",
+        ],
+        challenges: [
+          "Hardware limitations - Keterbatasan processing power device mobile",
+          "Tracking accuracy - Maintaining precise object tracking",
+          "User experience - Creating intuitive AR interfaces",
+          "Battery consumption - Optimizing power usage",
+          "Content creation - Developing high-quality 3D assets",
+          "Privacy concerns - Handling camera dan location data",
         ],
       },
       {
@@ -299,56 +271,45 @@ const categories = [
         icon: Code,
         description: "Modern web applications",
         image: "/projects/web-preview.jpg",
-        projects: [
-          {
-            id: "ecommerce-platform",
-            title: "Next-Gen E-commerce Platform",
-            description:
-              "Full-featured e-commerce platform with AI recommendations and real-time analytics",
-            image: "/projects/ecommerce-platform.jpg",
-            gallery: [
-              "/projects/ecommerce-platform-1.jpg",
-              "/projects/ecommerce-platform-2.jpg",
-              "/projects/ecommerce-platform-3.jpg",
-              "/projects/ecommerce-platform-4.jpg",
-            ],
-            video: "/projects/ecommerce-platform-demo.mp4",
-            tech: [
-              "Next.js",
-              "TypeScript",
-              "Prisma",
-              "PostgreSQL",
-              "Stripe",
-              "Redis",
-            ],
-            status: "Completed",
-            date: "2024",
-            objectives: [
-              "Create scalable e-commerce solution",
-              "Implement AI-driven recommendations",
-              "Provide real-time analytics dashboard",
-            ],
-            benefits: [
-              "Personalized shopping experience",
-              "Advanced search and filtering",
-              "Real-time inventory management",
-              "Comprehensive admin dashboard",
-            ],
-            features: [
-              "AI-powered product recommendations",
-              "Real-time chat support",
-              "Multi-payment gateway integration",
-              "Advanced analytics dashboard",
-              "Mobile-responsive design",
-              "SEO optimization",
-            ],
-            challenges:
-              "Optimizing performance for large product catalogs while maintaining real-time features and AI recommendations",
-            impact:
-              "Increased client sales by 60% and improved user engagement by 45%",
-            demoUrl: "https://ecommerce-demo.example.com",
-            sourceUrl: "https://github.com/example/ecommerce-platform",
-          },
+        overview:
+          "Website Development adalah proses menciptakan aplikasi web modern yang responsif, interaktif, dan user-friendly menggunakan teknologi terdepan untuk memberikan pengalaman digital yang optimal.",
+        history:
+          "Pengembangan web dimulai dari HTML statis pada 1990-an, berkembang menjadi dynamic websites dengan PHP dan JavaScript pada 2000-an, hingga era modern dengan framework seperti React, Vue, dan Angular pada 2010-an. Saat ini, fokus pada JAMstack, serverless, dan Progressive Web Apps (PWA).",
+        technologies: [
+          "Frontend: React, Vue.js, Angular, Svelte",
+          "Backend: Node.js, Python (Django/Flask), PHP (Laravel)",
+          "Full-stack: Next.js, Nuxt.js, SvelteKit",
+          "Database: PostgreSQL, MongoDB, Redis, Supabase",
+          "Cloud: Vercel, Netlify, AWS, Google Cloud",
+          "DevOps: Docker, Kubernetes, CI/CD pipelines",
+          "Styling: Tailwind CSS, Styled Components, SCSS",
+          "Testing: Jest, Cypress, Playwright, Vitest",
+        ],
+        applications: [
+          "E-commerce platforms dengan AI recommendations",
+          "Content Management Systems (CMS)",
+          "Social media platforms dan community websites",
+          "Educational platforms dan Learning Management Systems",
+          "Business applications dan enterprise solutions",
+          "Portfolio websites dan company profiles",
+          "Blogging platforms dan news websites",
+          "Real-time applications dengan WebSocket integration",
+        ],
+        currentTrends: [
+          "JAMstack architecture - JavaScript, APIs, dan Markup",
+          "Serverless computing - Function-as-a-Service (FaaS)",
+          "Progressive Web Apps (PWA) - Web apps yang berfungsi seperti native apps",
+          "Headless CMS - Content management terpisah dari frontend",
+          "Micro-frontends - Modular frontend architecture",
+          "Edge computing - Computing yang lebih dekat dengan user",
+        ],
+        challenges: [
+          "Performance optimization - Loading speed dan user experience",
+          "Security - Protecting against cyber threats dan vulnerabilities",
+          "Cross-browser compatibility - Ensuring consistent experience",
+          "Mobile responsiveness - Optimal display pada semua device",
+          "SEO optimization - Search engine visibility",
+          "Accessibility - Making websites usable for all users",
         ],
       },
       {
@@ -356,51 +317,45 @@ const categories = [
         icon: Smartphone,
         description: "Native Android applications",
         image: "/projects/android-preview.jpg",
-        projects: [
-          {
-            id: "fitness-tracker",
-            title: "Smart Fitness Tracker",
-            description:
-              "Comprehensive fitness tracking app with AI coaching and social features",
-            image: "/projects/fitness-tracker.jpg",
-            gallery: [
-              "/projects/fitness-tracker-1.jpg",
-              "/projects/fitness-tracker-2.jpg",
-              "/projects/fitness-tracker-3.jpg",
-            ],
-            video: "/projects/fitness-tracker-demo.mp4",
-            tech: [
-              "Kotlin",
-              "Jetpack Compose",
-              "Room DB",
-              "Retrofit",
-              "ML Kit",
-            ],
-            status: "Completed",
-            date: "2024",
-            objectives: [
-              "Track comprehensive fitness metrics",
-              "Provide AI-powered coaching",
-              "Build supportive community features",
-            ],
-            benefits: [
-              "Personalized workout plans",
-              "Real-time form correction",
-              "Social challenges and motivation",
-              "Health insights and analytics",
-            ],
-            features: [
-              "Exercise recognition using ML",
-              "Nutrition tracking and planning",
-              "Social challenges and leaderboards",
-              "Wearable device integration",
-              "Offline workout capabilities",
-            ],
-            challenges:
-              "Implementing accurate exercise recognition and ensuring data privacy while providing personalized insights",
-            impact:
-              "Helped 5000+ users achieve their fitness goals with 78% goal completion rate",
-          },
+        overview:
+          "Android Development adalah proses pembuatan aplikasi mobile untuk platform Android menggunakan teknologi modern seperti Kotlin, Jetpack Compose, dan Android SDK untuk menciptakan pengalaman mobile yang native dan optimal.",
+        history:
+          "Android pertama kali diumumkan Google pada 2007 dan diluncurkan pada 2008. Perkembangan signifikan termasuk pengenalan Android Studio (2013), Kotlin sebagai bahasa resmi (2017), Jetpack Compose (2021), dan fokus pada Material You design (2021).",
+        technologies: [
+          "Bahasa: Kotlin (primary), Java, Dart (Flutter)",
+          "UI Framework: Jetpack Compose, XML layouts",
+          "Architecture: MVVM, Clean Architecture, Repository Pattern",
+          "Database: Room, SQLite, Firebase Firestore",
+          "Networking: Retrofit, OkHttp, Ktor",
+          "Dependency Injection: Hilt, Dagger",
+          "Testing: JUnit, Espresso, Mockito",
+          "Tools: Android Studio, Gradle, ADB",
+        ],
+        applications: [
+          "Social media dan messaging apps",
+          "E-commerce dan shopping applications",
+          "Health & fitness tracking apps",
+          "Educational apps dan e-learning platforms",
+          "Entertainment apps (streaming, gaming)",
+          "Productivity tools dan business apps",
+          "IoT control applications",
+          "Augmented Reality (AR) applications",
+        ],
+        currentTrends: [
+          "Jetpack Compose - Modern declarative UI toolkit",
+          "Kotlin Multiplatform - Shared code across platforms",
+          "Android 14 features - Privacy improvements dan better performance",
+          "Material You - Dynamic theming based on user preferences",
+          "Foldable devices support - Adaptive UI for flexible screens",
+          "5G integration - High-speed connectivity features",
+        ],
+        challenges: [
+          "Device fragmentation - Supporting various screen sizes dan Android versions",
+          "Performance optimization - Battery life dan memory management",
+          "Security - Protecting user data dan preventing malware",
+          "App size optimization - Reducing APK size",
+          "Compatibility - Ensuring app works across different devices",
+          "User experience - Creating intuitive dan engaging interfaces",
         ],
       },
       {
@@ -408,46 +363,45 @@ const categories = [
         icon: Palette,
         description: "3D modeling and animation",
         image: "/projects/blender-preview.jpg",
-        projects: [
-          {
-            id: "architectural-viz",
-            title: "Architectural Visualization Suite",
-            description:
-              "Professional 3D architectural rendering and virtual tour creation",
-            image: "/projects/architectural-viz.jpg",
-            gallery: [
-              "/projects/architectural-viz-1.jpg",
-              "/projects/architectural-viz-2.jpg",
-              "/projects/architectural-viz-3.jpg",
-              "/projects/architectural-viz-4.jpg",
-            ],
-            video: "/projects/architectural-viz-demo.mp4",
-            tech: ["Blender", "Cycles Renderer", "Python Scripting", "WebGL"],
-            status: "Completed",
-            date: "2023",
-            objectives: [
-              "Create photorealistic architectural renders",
-              "Develop virtual tour experiences",
-              "Streamline client presentation process",
-            ],
-            benefits: [
-              "Photorealistic visualizations",
-              "Interactive virtual tours",
-              "Fast iteration capabilities",
-              "Client presentation tools",
-            ],
-            features: [
-              "Photorealistic lighting simulation",
-              "Material library and customization",
-              "VR-ready virtual tours",
-              "Automated rendering pipeline",
-              "Client collaboration tools",
-            ],
-            challenges:
-              "Achieving photorealistic quality while maintaining reasonable render times for client iterations",
-            impact:
-              "Reduced client revision cycles by 50% and increased project approval rates by 35%",
-          },
+        overview:
+          "Blender/3D Modeling adalah seni dan ilmu menciptakan objek, karakter, dan lingkungan tiga dimensi menggunakan software canggih untuk visualisasi, animasi, dan rendering yang realistis.",
+        history:
+          "3D modeling dimulai pada 1960-an dengan wireframe graphics, berkembang pesat pada 1980-an dengan software seperti AutoCAD. Blender diluncurkan pada 1998 sebagai software open-source dan menjadi standar industri untuk 3D creation suite yang gratis namun powerful.",
+        technologies: [
+          "Blender - Open-source 3D creation suite",
+          "Autodesk Maya - Professional 3D animation software",
+          "3ds Max - 3D modeling dan rendering",
+          "Cinema 4D - Motion graphics dan 3D animation",
+          "ZBrush - Digital sculpting",
+          "Substance Suite - Texturing dan material creation",
+          "Houdini - Procedural 3D animation",
+          "Unity/Unreal Engine - Real-time 3D engines",
+        ],
+        applications: [
+          "Architectural visualization - Building dan interior design",
+          "Product visualization - Marketing dan prototyping",
+          "Character modeling - Gaming dan animation",
+          "Motion graphics - Advertising dan branding",
+          "Visual effects (VFX) - Film dan television",
+          "3D printing - Prototyping dan manufacturing",
+          "Virtual Reality environments",
+          "Medical visualization - Anatomy dan surgical planning",
+        ],
+        currentTrends: [
+          "Real-time rendering - Instant visual feedback",
+          "Procedural modeling - Algorithm-based object creation",
+          "PBR materials - Physically Based Rendering",
+          "Cloud rendering - GPU farms untuk complex scenes",
+          "AI-assisted modeling - Machine learning untuk automation",
+          "VR sculpting - Creating 3D art in virtual reality",
+        ],
+        challenges: [
+          "Learning curve - Mastering complex software interfaces",
+          "Hardware requirements - High-end GPUs untuk rendering",
+          "Time consumption - Detailed models require significant time",
+          "File management - Organizing complex project assets",
+          "Rendering optimization - Balancing quality dan speed",
+          "Staying updated - Rapidly evolving software features",
         ],
       },
       {
@@ -455,45 +409,45 @@ const categories = [
         icon: Gamepad2,
         description: "Interactive games and experiences",
         image: "/projects/game-preview.jpg",
-        projects: [
-          {
-            id: "puzzle-adventure",
-            title: "Mystical Puzzle Adventure",
-            description:
-              "2D puzzle-adventure game with hand-drawn art and immersive storytelling",
-            image: "/projects/puzzle-adventure.jpg",
-            gallery: [
-              "/projects/puzzle-adventure-1.jpg",
-              "/projects/puzzle-adventure-2.jpg",
-              "/projects/puzzle-adventure-3.jpg",
-            ],
-            video: "/projects/puzzle-adventure-demo.mp4",
-            tech: ["Unity", "C#", "Photoshop", "Audacity", "Git LFS"],
-            status: "In Progress",
-            date: "2024",
-            objectives: [
-              "Create engaging puzzle mechanics",
-              "Develop compelling narrative",
-              "Design beautiful hand-drawn art",
-            ],
-            benefits: [
-              "Unique puzzle mechanics",
-              "Rich storytelling experience",
-              "Hand-crafted art style",
-              "Multiple difficulty levels",
-            ],
-            features: [
-              "Hand-drawn 2D animations",
-              "Dynamic puzzle generation",
-              "Branching storyline paths",
-              "Original soundtrack",
-              "Achievement system",
-            ],
-            challenges:
-              "Balancing puzzle difficulty while maintaining story pacing and creating consistent art style",
-            impact:
-              "Currently in beta testing with 500+ testers providing feedback for final release",
-          },
+        overview:
+          "Game Development adalah proses kreatif pembuatan video game yang menggabungkan programming, desain, seni, dan storytelling untuk menciptakan pengalaman interaktif yang engaging dan memorable.",
+        history:
+          "Game development dimulai pada 1950-an dengan game sederhana seperti Tennis for Two. Era arcade 1970-80an, konsol gaming 1980-90an, dan revolusi mobile gaming 2000-an membentuk industri modern yang kini bernilai ratusan miliar dollar.",
+        technologies: [
+          "Game Engines: Unity, Unreal Engine, Godot",
+          "Programming: C#, C++, JavaScript, Python",
+          "Graphics: OpenGL, DirectX, Vulkan",
+          "Audio: FMOD, Wwise, OpenAL",
+          "Physics: Box2D, Bullet Physics, Havok",
+          "Networking: Photon, Mirror, Custom solutions",
+          "Platform SDKs: Steam, Mobile (iOS/Android)",
+          "Version Control: Git, Perforce, Plastic SCM",
+        ],
+        applications: [
+          "Mobile games - Casual dan hyper-casual gaming",
+          "PC games - Indie dan AAA development",
+          "Console games - PlayStation, Xbox, Nintendo",
+          "Web games - Browser-based gaming",
+          "VR/AR games - Immersive gaming experiences",
+          "Educational games - Gamification of learning",
+          "Serious games - Training dan simulation",
+          "Esports - Competitive gaming platforms",
+        ],
+        currentTrends: [
+          "Cloud gaming - Streaming games without downloads",
+          "Indie game renaissance - Small teams creating hit games",
+          "Live service games - Ongoing content updates",
+          "Cross-platform play - Gaming across multiple devices",
+          "AI in games - Procedural generation dan smart NPCs",
+          "Blockchain gaming - NFTs dan play-to-earn models",
+        ],
+        challenges: [
+          "Technical complexity - Optimizing for multiple platforms",
+          "Creative vision - Balancing innovation dengan market demands",
+          "Team coordination - Managing multidisciplinary teams",
+          "Budget constraints - Controlling development costs",
+          "Quality assurance - Thorough testing across platforms",
+          "Market competition - Standing out in saturated market",
         ],
       },
       {
@@ -501,45 +455,45 @@ const categories = [
         icon: Brain,
         description: "AI and ML projects",
         image: "/projects/ml-preview.jpg",
-        projects: [
-          {
-            id: "image-classifier",
-            title: "Medical Image Classifier",
-            description:
-              "Deep learning model for automated medical image analysis and diagnosis assistance",
-            image: "/projects/image-classifier.jpg",
-            gallery: [
-              "/projects/image-classifier-1.jpg",
-              "/projects/image-classifier-2.jpg",
-              "/projects/image-classifier-3.jpg",
-            ],
-            video: "/projects/image-classifier-demo.mp4",
-            tech: ["Python", "TensorFlow", "OpenCV", "Flask", "Docker"],
-            status: "Completed",
-            date: "2024",
-            objectives: [
-              "Assist medical professionals in diagnosis",
-              "Reduce analysis time and errors",
-              "Improve healthcare accessibility",
-            ],
-            benefits: [
-              "Fast and accurate analysis",
-              "Reduced diagnostic errors",
-              "Educational tool for students",
-              "Standardized reporting",
-            ],
-            features: [
-              "95% accuracy in classification",
-              "Real-time image processing",
-              "Detailed analysis reports",
-              "Integration with hospital systems",
-              "Privacy-compliant data handling",
-            ],
-            challenges:
-              "Ensuring high accuracy while maintaining patient privacy and meeting medical regulatory standards",
-            impact:
-              "Deployed in 3 medical facilities, reducing diagnosis time by 40% with 95% accuracy rate",
-          },
+        overview:
+          "Machine Learning adalah cabang artificial intelligence yang memungkinkan komputer belajar dan membuat prediksi atau keputusan tanpa pemrograman eksplisit, menggunakan algoritma untuk menganalisis data dan menemukan pola.",
+        history:
+          "ML dimulai pada 1950-an dengan konsep neural networks. Perkembangan significant pada 1980-90an dengan backpropagation, lalu revolusi deep learning pada 2010-an dengan breakthrough seperti AlexNet (2012) dan GPT models yang mengubah landscape AI modern.",
+        technologies: [
+          "Frameworks: TensorFlow, PyTorch, Scikit-learn",
+          "Languages: Python, R, Julia, Scala",
+          "Cloud Platforms: AWS ML, Google AI, Azure ML",
+          "Data Processing: Pandas, NumPy, Apache Spark",
+          "Visualization: Matplotlib, Seaborn, Plotly",
+          "MLOps: MLflow, Kubeflow, DVC",
+          "Specialized: OpenCV (Computer Vision), NLTK (NLP)",
+          "Hardware: GPUs, TPUs, specialized AI chips",
+        ],
+        applications: [
+          "Computer Vision - Image recognition dan object detection",
+          "Natural Language Processing - Chatbots dan language translation",
+          "Recommendation Systems - Personalized content delivery",
+          "Predictive Analytics - Business forecasting dan insights",
+          "Healthcare AI - Medical diagnosis dan drug discovery",
+          "Autonomous Systems - Self-driving cars dan robots",
+          "Financial Services - Fraud detection dan algorithmic trading",
+          "Smart IoT - Intelligent connected devices",
+        ],
+        currentTrends: [
+          "Large Language Models (LLMs) - GPT, BERT, dan successors",
+          "Generative AI - Creating content from text prompts",
+          "Edge AI - Running ML models on mobile devices",
+          "Federated Learning - Training models without centralizing data",
+          "AutoML - Automated machine learning pipelines",
+          "Explainable AI - Understanding model decision-making",
+        ],
+        challenges: [
+          "Data quality - Ensuring clean dan representative datasets",
+          "Model interpretability - Understanding black box decisions",
+          "Bias dan fairness - Preventing discriminatory outcomes",
+          "Computational costs - Managing expensive training processes",
+          "Privacy concerns - Protecting sensitive training data",
+          "Deployment complexity - Moving from lab to production",
         ],
       },
       {
@@ -547,45 +501,45 @@ const categories = [
         icon: Eye,
         description: "VR applications and experiences",
         image: "/projects/vr-preview.jpg",
-        projects: [
-          {
-            id: "vr-training",
-            title: "Industrial Safety VR Training",
-            description:
-              "Immersive VR training platform for industrial safety procedures and emergency response",
-            image: "/projects/vr-training.jpg",
-            gallery: [
-              "/projects/vr-training-1.jpg",
-              "/projects/vr-training-2.jpg",
-              "/projects/vr-training-3.jpg",
-            ],
-            video: "/projects/vr-training-demo.mp4",
-            tech: ["Unity", "C#", "SteamVR", "Oculus SDK", "Networking"],
-            status: "Completed",
-            date: "2023",
-            objectives: [
-              "Provide safe training environment",
-              "Simulate dangerous scenarios",
-              "Improve safety knowledge retention",
-            ],
-            benefits: [
-              "Risk-free training environment",
-              "Repeatable scenario practice",
-              "Cost-effective training solution",
-              "Measurable learning outcomes",
-            ],
-            features: [
-              "Realistic industrial environments",
-              "Interactive safety equipment",
-              "Multi-user training sessions",
-              "Performance analytics",
-              "Emergency scenario simulations",
-            ],
-            challenges:
-              "Creating realistic simulations while ensuring comfortable VR experience and accurate safety procedures",
-            impact:
-              "Improved safety training effectiveness by 70% and reduced workplace incidents by 25%",
-          },
+        overview:
+          "Virtual Reality adalah teknologi yang menciptakan lingkungan simulasi tiga dimensi yang imersif, memungkinkan user berinteraksi dengan dunia digital seolah-oleh nyata melalui headset dan controller khusus.",
+        history:
+          "Konsep VR dimulai pada 1960-an dengan Sensorama dan HMD pertama. Perkembangan modern dimulai dengan Oculus Rift Kickstarter (2012), diikuti PlayStation VR, HTC Vive, dan generasi terbaru seperti Meta Quest dan Apple Vision Pro.",
+        technologies: [
+          "Hardware: Oculus/Meta Quest, PICO, HTC Vive, PlayStation VR",
+          "Game Engines: Unity 3D, Unreal Engine",
+          "SDKs: OpenXR, Oculus SDK, SteamVR",
+          "Tracking: 6DOF tracking, hand tracking, eye tracking",
+          "Audio: Spatial audio, haptic feedback",
+          "Development: C#, C++, JavaScript (WebXR)",
+          "Platforms: PC VR, Standalone VR, Mobile VR",
+          "Cloud: VR streaming dan remote rendering",
+        ],
+        applications: [
+          "Gaming dan Entertainment - Immersive gaming experiences",
+          "Education dan Training - Virtual classrooms dan simulations",
+          "Healthcare - Medical training dan therapy applications",
+          "Architecture - Virtual building walkthroughs",
+          "Manufacturing - Assembly training dan design review",
+          "Social VR - Virtual meetings dan social spaces",
+          "Tourism - Virtual travel experiences",
+          "Fitness - VR workout dan sports simulation",
+        ],
+        currentTrends: [
+          "Standalone VR - No PC required, all-in-one headsets",
+          "Mixed Reality (MR) - Blending virtual dengan real world",
+          "Social VR platforms - Virtual workspaces dan hangouts",
+          "Haptic technology - Advanced touch feedback",
+          "Eye tracking - Foveated rendering dan gaze interaction",
+          "Wireless VR - Eliminating cables untuk better mobility",
+        ],
+        challenges: [
+          "Motion sickness - Reducing VR-induced discomfort",
+          "Hardware costs - Making VR accessible to mainstream",
+          "Content creation - Developing compelling VR experiences",
+          "User interface - Designing intuitive VR interactions",
+          "Performance optimization - Maintaining high framerates",
+          "Physical space - Requiring adequate room for VR",
         ],
       },
       {
@@ -593,45 +547,45 @@ const categories = [
         icon: Apple,
         description: "Native iOS applications",
         image: "/projects/ios-preview.jpg",
-        projects: [
-          {
-            id: "meditation-app",
-            title: "Mindful Moments",
-            description:
-              "Personalized meditation and mindfulness app with AI-curated content",
-            image: "/projects/meditation-app.jpg",
-            gallery: [
-              "/projects/meditation-app-1.jpg",
-              "/projects/meditation-app-2.jpg",
-              "/projects/meditation-app-3.jpg",
-            ],
-            video: "/projects/meditation-app-demo.mp4",
-            tech: ["Swift", "SwiftUI", "Core Data", "HealthKit", "CloudKit"],
-            status: "Completed",
-            date: "2024",
-            objectives: [
-              "Promote mental wellness",
-              "Provide personalized meditation",
-              "Track mindfulness progress",
-            ],
-            benefits: [
-              "Personalized meditation sessions",
-              "Mood and progress tracking",
-              "Offline content availability",
-              "Apple Watch integration",
-            ],
-            features: [
-              "AI-curated meditation content",
-              "Biometric feedback integration",
-              "Social sharing and challenges",
-              "Sleep story collections",
-              "Breathing exercise guides",
-            ],
-            challenges:
-              "Creating personalized experiences while maintaining simplicity and ensuring user privacy",
-            impact:
-              "Featured on App Store, 10,000+ downloads with 4.8 star rating and 85% daily active users",
-          },
+        overview:
+          "iOS Development adalah proses pembuatan aplikasi native untuk perangkat Apple (iPhone, iPad, Apple Watch) menggunakan bahasa Swift dan tools resmi Apple untuk menghadirkan pengalaman user yang optimal dan terintegrasi.",
+        history:
+          "iOS SDK pertama kali dirilis pada 2008 bersamaan dengan App Store. Perkembangan major termasuk pengenalan Swift (2014), SwiftUI (2019), dan berbagai framework seperti Core ML, ARKit, yang terus berkembang seiring update iOS tahunan.",
+        technologies: [
+          "Languages: Swift (primary), Objective-C (legacy)",
+          "UI Frameworks: SwiftUI, UIKit",
+          "Development: Xcode, Interface Builder",
+          "Architecture: MVC, MVVM, VIPER, Clean Architecture",
+          "Database: Core Data, SQLite, Realm",
+          "Networking: URLSession, Alamofire",
+          "Testing: XCTest, Quick/Nimble",
+          "Distribution: App Store Connect, TestFlight",
+        ],
+        applications: [
+          "Social networking apps dengan iOS integration",
+          "Productivity tools memanfaatkan ecosystem Apple",
+          "Health & fitness apps dengan HealthKit integration",
+          "E-commerce apps dengan Apple Pay integration",
+          "Creative apps untuk photography dan video editing",
+          "Educational apps dengan Apple Pencil support",
+          "AR applications menggunakan ARKit",
+          "Watch apps untuk Apple Watch integration",
+        ],
+        currentTrends: [
+          "SwiftUI adoption - Declarative UI framework",
+          "iOS 17 features - Interactive widgets dan enhanced privacy",
+          "Apple Silicon optimization - Native performance on M-series chips",
+          "App Clips - Lightweight app experiences",
+          "Privacy-first development - App Tracking Transparency",
+          "Cross-platform dengan Swift - Server-side Swift development",
+        ],
+        challenges: [
+          "App Store guidelines - Strict review process dan policies",
+          "Device compatibility - Supporting various iOS versions",
+          "Performance optimization - Efficient memory dan battery usage",
+          "Design consistency - Following Human Interface Guidelines",
+          "Testing complexity - Multiple device sizes dan configurations",
+          "Development costs - Apple Developer Program dan hardware requirements",
         ],
       },
     ],
@@ -664,44 +618,45 @@ const categories = [
         icon: GraduationCap,
         description: "Professional certifications",
         image: "/projects/cert-preview.jpg",
-        projects: [
-          {
-            id: "aws-solutions-architect",
-            title: "AWS Solutions Architect Professional",
-            description:
-              "Advanced cloud architecture certification demonstrating expertise in AWS services",
-            image: "/projects/aws-cert.jpg",
-            gallery: [
-              "/projects/aws-cert-1.jpg",
-              "/projects/aws-cert-2.jpg",
-              "/projects/aws-cert-3.jpg",
-            ],
-            tech: ["AWS", "Cloud Architecture", "DevOps", "Security"],
-            status: "Completed",
-            date: "2024",
-            objectives: [
-              "Master cloud architecture principles",
-              "Design scalable AWS solutions",
-              "Implement security best practices",
-            ],
-            benefits: [
-              "Advanced cloud architecture skills",
-              "Industry-recognized certification",
-              "Enhanced career opportunities",
-              "Deep AWS service knowledge",
-            ],
-            features: [
-              "Comprehensive AWS service coverage",
-              "Real-world architecture scenarios",
-              "Security and compliance focus",
-              "Cost optimization strategies",
-              "High availability design patterns",
-            ],
-            challenges:
-              "Mastering complex multi-service architectures and staying current with rapidly evolving AWS services",
-            impact:
-              "Led cloud migration projects saving companies 40% in infrastructure costs",
-          },
+        overview:
+          "Professional Certificates merupakan validasi formal terhadap keahlian dan kompetensi dalam bidang teknologi, yang diakui industri dan mendemonstrasikan commitment terhadap continuous learning dan professional development.",
+        history:
+          "Sertifikasi IT dimulai pada 1980-an dengan vendor-specific certifications. Perkembangan major termasuk Microsoft certifications (1990s), Cisco CCNA (1990s), AWS certifications (2013), dan era modern dengan cloud dan AI certifications yang berkembang pesat.",
+        technologies: [
+          "Cloud Platforms: AWS, Google Cloud, Microsoft Azure",
+          "DevOps: Docker, Kubernetes, Jenkins, Terraform",
+          "Security: CISSP, CEH, CompTIA Security+",
+          "Data: Google Data Analytics, Microsoft Power BI",
+          "AI/ML: TensorFlow, Google AI, AWS AI/ML",
+          "Project Management: PMP, Scrum Master, Agile",
+          "Programming: Oracle Java, Microsoft C#",
+          "Networking: Cisco CCNA, CompTIA Network+",
+        ],
+        applications: [
+          "Career advancement dan professional recognition",
+          "Skill validation untuk employers dan clients",
+          "Salary increase dan better job opportunities",
+          "Industry credibility dan trust building",
+          "Continuous learning dan staying current",
+          "Compliance requirements untuk certain roles",
+          "Personal branding dan professional portfolio",
+          "Network expansion dengan certified professionals",
+        ],
+        currentTrends: [
+          "Cloud certifications - AWS, Azure, GCP dominance",
+          "AI/ML certifications - Growing demand for AI skills",
+          "Cybersecurity certifications - Increasing security awareness",
+          "Digital transformation certifications",
+          "Remote proctoring - Online certification exams",
+          "Micro-credentials - Specialized skill certifications",
+        ],
+        challenges: [
+          "Rapidly changing technology - Keeping certifications current",
+          "Cost considerations - Expensive certification fees",
+          "Time investment - Balancing study dengan work demands",
+          "Practical vs theoretical - Bridging knowledge dan real-world application",
+          "Certification validity - Managing expiration dates",
+          "ROI measurement - Quantifying certification value",
         ],
       },
       {
@@ -709,45 +664,45 @@ const categories = [
         icon: FileText,
         description: "Academic and professional research",
         image: "/projects/research-preview.jpg",
-        projects: [
-          {
-            id: "nlp-research",
-            title: "Multilingual NLP for Education",
-            description:
-              "Research on natural language processing applications in multilingual educational contexts",
-            image: "/projects/nlp-research.jpg",
-            gallery: [
-              "/projects/nlp-research-1.jpg",
-              "/projects/nlp-research-2.jpg",
-              "/projects/nlp-research-3.jpg",
-            ],
-            video: "/projects/nlp-research-demo.mp4",
-            tech: ["Python", "NLTK", "Transformers", "PyTorch", "Jupyter"],
-            status: "Published",
-            date: "2023",
-            objectives: [
-              "Improve multilingual text processing",
-              "Enhance educational applications",
-              "Advance NLP research field",
-            ],
-            benefits: [
-              "Cross-language understanding",
-              "Educational content analysis",
-              "Automated assessment tools",
-              "Language learning assistance",
-            ],
-            features: [
-              "Multi-language text analysis",
-              "Educational content classification",
-              "Automated difficulty assessment",
-              "Cross-cultural linguistic patterns",
-              "Real-time translation assistance",
-            ],
-            challenges:
-              "Handling linguistic diversity and cultural nuances while maintaining accuracy across different languages",
-            impact:
-              "Published in 2 peer-reviewed journals, cited by 50+ researchers, implemented in 5 educational platforms",
-          },
+        overview:
+          "Research Projects encompass systematic investigation dan study dalam teknologi emerging, contributing to knowledge advancement dan practical solutions untuk real-world problems through rigorous methodology dan peer review.",
+        history:
+          "Technology research evolution dari academic institutions pada 1950-60s, corporate R&D labs pada 1970-80s, hingga modern collaborative research dengan open science, preprint servers, dan global research collaboration yang democratized knowledge sharing.",
+        technologies: [
+          "Research Tools: Jupyter Notebooks, R, MATLAB",
+          "Data Analysis: Python (Pandas, NumPy), SQL",
+          "Visualization: Matplotlib, Seaborn, D3.js",
+          "Statistical Software: SPSS, SAS, Stata",
+          "Survey Platforms: Qualtrics, SurveyMonkey",
+          "Literature Management: Zotero, Mendeley",
+          "Collaboration: GitHub, Overleaf (LaTeX)",
+          "Publishing: ArXiv, ResearchGate, Academic journals",
+        ],
+        applications: [
+          "Algorithm development dan optimization",
+          "User experience research dan human-computer interaction",
+          "Performance analysis dan benchmarking studies",
+          "Security vulnerability research",
+          "Educational technology effectiveness studies",
+          "Market research dan technology adoption studies",
+          "Interdisciplinary research combining tech dengan other fields",
+          "Open source project contributions dan documentation",
+        ],
+        currentTrends: [
+          "Open science initiatives - Making research accessible",
+          "Reproducible research - Ensuring research can be replicated",
+          "Interdisciplinary collaboration - Tech meets other domains",
+          "AI-assisted research - Using AI tools untuk analysis",
+          "Real-time research sharing - Preprint servers dan rapid publication",
+          "Citizen science - Involving public in research projects",
+        ],
+        challenges: [
+          "Funding acquisition - Securing research grants dan sponsorship",
+          "Publication pressure - Balancing quality dengan quantity",
+          "Reproducibility crisis - Ensuring research can be replicated",
+          "Ethical considerations - Responsible research conduct",
+          "Data privacy - Handling sensitive research data",
+          "Time constraints - Long research cycles vs fast-moving tech",
         ],
       },
       {
@@ -755,45 +710,45 @@ const categories = [
         icon: Trophy,
         description: "Awards and recognitions",
         image: "/projects/awards-preview.jpg",
-        projects: [
-          {
-            id: "innovation-award",
-            title: "Best Innovation in EdTech 2024",
-            description:
-              "Recognition for outstanding contribution to educational technology development",
-            image: "/projects/innovation-award.jpg",
-            gallery: [
-              "/projects/innovation-award-1.jpg",
-              "/projects/innovation-award-2.jpg",
-              "/projects/innovation-award-3.jpg",
-            ],
-            video: "/projects/innovation-award-ceremony.mp4",
-            tech: ["Innovation", "EdTech", "Leadership", "Project Management"],
-            status: "Achieved",
-            date: "2024",
-            objectives: [
-              "Recognize innovative contributions",
-              "Highlight impact in education",
-              "Inspire future innovations",
-            ],
-            benefits: [
-              "Industry recognition",
-              "Professional credibility",
-              "Network expansion",
-              "Platform for future projects",
-            ],
-            features: [
-              "Peer nomination and review",
-              "Industry expert evaluation",
-              "Public recognition ceremony",
-              "Media coverage and interviews",
-              "Speaking opportunities",
-            ],
-            challenges:
-              "Competing against exceptional innovations while demonstrating measurable impact in education",
-            impact:
-              "Featured in 5 tech publications, invited to speak at 3 conferences, mentoring 10+ aspiring developers",
-          },
+        overview:
+          "Professional Achievements represent recognition of outstanding contributions, innovative solutions, dan leadership in technology field, serving as milestones dalam career development dan industry impact.",
+        history:
+          "Technology awards evolution dari early computing pioneers recognition (1960s-70s), corporate excellence programs (1980s-90s), hingga modern diverse recognition including diversity awards, innovation competitions, dan social impact recognitions.",
+        technologies: [
+          "Innovation Platforms: Hackathons, Innovation challenges",
+          "Competition Platforms: TopCoder, Kaggle competitions",
+          "Portfolio Platforms: GitHub showcases, Personal websites",
+          "Professional Networks: LinkedIn achievements",
+          "Award Management: Digital badges, Blockchain certificates",
+          "Measurement Tools: Impact metrics, Citation tracking",
+          "Presentation Tools: Demo videos, Case studies",
+          "Recognition Systems: Peer nomination platforms",
+        ],
+        applications: [
+          "Industry recognition awards untuk innovative solutions",
+          "Academic achievements dalam research dan publication",
+          "Competition wins dalam programming dan AI contests",
+          "Leadership recognition dalam team dan project management",
+          "Community contributions dalam open source projects",
+          "Speaking engagements dan conference presentations",
+          "Mentorship dan knowledge sharing recognition",
+          "Social impact awards untuk technology for good initiatives",
+        ],
+        currentTrends: [
+          "Diversity dan inclusion awards - Recognizing underrepresented groups",
+          "Sustainability awards - Green technology innovations",
+          "AI ethics awards - Responsible AI development",
+          "Remote work leadership recognition",
+          "Digital transformation success stories",
+          "Open source contribution recognition",
+        ],
+        challenges: [
+          "Subjective evaluation - Ensuring fair assessment criteria",
+          "Visibility challenges - Getting work noticed by award committees",
+          "Documentation burden - Properly documenting achievements",
+          "Imposter syndrome - Self-advocacy dan confidence building",
+          "Time investment - Balancing achievement pursuit dengan actual work",
+          "Meaningful impact - Focusing on substance over recognition",
         ],
       },
     ],
@@ -803,7 +758,6 @@ const categories = [
 export default function Home() {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [feedbackForm, setFeedbackForm] = useState({
     name: "",
     email: "",
@@ -1221,7 +1175,44 @@ export default function Home() {
                   />
 
                   {/* Glowing Orbs */}
-                  {[...Array(6)].map((_, i) => (
+                  {[
+                    {
+                      left: "80%",
+                      top: "15%",
+                      color: "bg-blue-400",
+                      shadow: "#60a5fa",
+                    },
+                    {
+                      left: "85%",
+                      top: "45%",
+                      color: "bg-purple-400",
+                      shadow: "#a78bfa",
+                    },
+                    {
+                      left: "65%",
+                      top: "75%",
+                      color: "bg-cyan-400",
+                      shadow: "#22d3ee",
+                    },
+                    {
+                      left: "25%",
+                      top: "80%",
+                      color: "bg-blue-400",
+                      shadow: "#60a5fa",
+                    },
+                    {
+                      left: "15%",
+                      top: "50%",
+                      color: "bg-purple-400",
+                      shadow: "#a78bfa",
+                    },
+                    {
+                      left: "35%",
+                      top: "20%",
+                      color: "bg-cyan-400",
+                      shadow: "#22d3ee",
+                    },
+                  ].map((orb, i) => (
                     <motion.div
                       key={i}
                       animate={{
@@ -1233,27 +1224,11 @@ export default function Home() {
                         repeat: Infinity,
                         delay: i * 0.5,
                       }}
-                      className={`absolute w-3 h-3 rounded-full ${
-                        i % 3 === 0
-                          ? "bg-blue-400"
-                          : i % 3 === 1
-                          ? "bg-purple-400"
-                          : "bg-cyan-400"
-                      }`}
+                      className={`absolute w-3 h-3 rounded-full ${orb.color}`}
                       style={{
-                        left: `${
-                          15 + Math.cos((i * 60 * Math.PI) / 180) * 140 + 50
-                        }%`,
-                        top: `${
-                          15 + Math.sin((i * 60 * Math.PI) / 180) * 140 + 50
-                        }%`,
-                        boxShadow: `0 0 20px ${
-                          i % 3 === 0
-                            ? "#60a5fa"
-                            : i % 3 === 1
-                            ? "#a78bfa"
-                            : "#22d3ee"
-                        }`,
+                        left: orb.left,
+                        top: orb.top,
+                        boxShadow: `0 0 20px ${orb.shadow}`,
                       }}
                     />
                   ))}
@@ -1534,9 +1509,9 @@ export default function Home() {
 
                     <div className="border-t border-white/10 pt-6">
                       <h4 className="text-slate-300 text-sm font-semibold mb-4">
-                        Available Sections
+                        Technology Fields
                       </h4>
-                      <div className="grid grid-cols-1 gap-4">
+                      <div className="grid grid-cols-1 gap-6">
                         {category.sections.map((section, sectionIndex) => (
                           <motion.div
                             key={section.name}
@@ -1550,68 +1525,113 @@ export default function Home() {
                               delay: sectionIndex * 0.1,
                             }}
                             className="group">
-                            <div
-                              className="flex items-center justify-between p-5 rounded-xl bg-white/5 hover:bg-white/15 transition-all duration-300 cursor-pointer border border-white/10 hover:border-white/30 group-hover:shadow-lg"
-                              onClick={() => {
-                                console.log(
-                                  "Section clicked:",
-                                  section.name,
-                                  section.projects
-                                );
-                                if (
-                                  section.projects &&
-                                  section.projects.length > 0
-                                ) {
-                                  setSelectedProject(section.projects[0]);
-                                }
-                              }}>
-                              {/* Left side - Section info */}
-                              <div className="flex items-center space-x-4">
-                                {/* Section Image/Icon */}
-                                <div className="w-14 h-14 rounded-xl overflow-hidden bg-white/10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                            <div className="p-6 rounded-xl bg-white/5 hover:bg-white/15 transition-all duration-300 border border-white/10 hover:border-white/30">
+                              {/* Section Header */}
+                              <div className="flex items-center space-x-4 mb-4">
+                                <div className="w-12 h-12 rounded-xl overflow-hidden bg-white/10 flex items-center justify-center">
                                   {section.image ? (
                                     <Image
                                       src={section.image}
                                       alt={section.name}
-                                      width={56}
-                                      height={56}
-                                      className="w-full h-full object-cover"
+                                      width={48}
+                                      height={48}
+                                      className="object-cover"
                                     />
                                   ) : (
-                                    <section.icon className="w-7 h-7 text-slate-300" />
+                                    <section.icon className="w-6 h-6 text-slate-300" />
                                   )}
                                 </div>
-
-                                {/* Section Details */}
-                                <div className="flex-1">
-                                  <h4 className="text-base font-semibold text-white group-hover:text-blue-300 transition-colors duration-200">
+                                <div>
+                                  <h5 className="text-white font-semibold text-lg">
                                     {section.name}
-                                  </h4>
-                                  <p className="text-slate-400 text-sm mt-1 line-clamp-2">
+                                  </h5>
+                                  <p className="text-slate-400 text-sm">
                                     {section.description}
                                   </p>
-                                  {section.projects && (
-                                    <div className="flex items-center space-x-2 mt-2">
-                                      <div
-                                        className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`}
-                                      />
-                                      <span className="text-slate-500 text-xs">
-                                        {section.projects.length} project
-                                        {section.projects.length !== 1
-                                          ? "s"
-                                          : ""}
-                                      </span>
-                                    </div>
-                                  )}
                                 </div>
                               </div>
 
-                              {/* Right side - Action hint */}
-                              <div className="flex items-center space-x-2 text-slate-500 group-hover:text-slate-300 transition-colors duration-200">
-                                <span className="text-xs">
-                                  Click to explore
-                                </span>
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                              {/* Field Overview */}
+                              <div className="mb-6">
+                                <p className="text-slate-300 text-sm leading-relaxed">
+                                  {section.overview}
+                                </p>
+                              </div>
+
+                              {/* Technologies */}
+                              <div className="mb-6">
+                                <h6 className="text-slate-300 text-sm font-semibold mb-3 flex items-center">
+                                  <Code className="w-4 h-4 mr-2" />
+                                  Technologies & Tools
+                                </h6>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                  {section.technologies
+                                    .slice(0, 6)
+                                    .map((tech, techIndex) => (
+                                      <div
+                                        key={techIndex}
+                                        className="flex items-center text-slate-400 text-xs">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mr-2"></div>
+                                        {tech}
+                                      </div>
+                                    ))}
+                                </div>
+                                {section.technologies.length > 6 && (
+                                  <p className="text-slate-500 text-xs mt-2">
+                                    +{section.technologies.length - 6} more
+                                    technologies
+                                  </p>
+                                )}
+                              </div>
+
+                              {/* Applications */}
+                              <div className="mb-6">
+                                <h6 className="text-slate-300 text-sm font-semibold mb-3 flex items-center">
+                                  <Lightbulb className="w-4 h-4 mr-2" />
+                                  Key Applications
+                                </h6>
+                                <div className="grid grid-cols-1 gap-2">
+                                  {section.applications
+                                    .slice(0, 4)
+                                    .map((app, appIndex) => (
+                                      <div
+                                        key={appIndex}
+                                        className="flex items-start text-slate-400 text-xs">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-green-400 mr-2 mt-1.5 flex-shrink-0"></div>
+                                        {app}
+                                      </div>
+                                    ))}
+                                </div>
+                                {section.applications.length > 4 && (
+                                  <p className="text-slate-500 text-xs mt-2">
+                                    +{section.applications.length - 4} more
+                                    applications
+                                  </p>
+                                )}
+                              </div>
+
+                              {/* Current Trends */}
+                              <div className="mb-4">
+                                <h6 className="text-slate-300 text-sm font-semibold mb-3 flex items-center">
+                                  <TrendingUp className="w-4 h-4 mr-2" />
+                                  Current Trends
+                                </h6>
+                                <div className="flex flex-wrap gap-2">
+                                  {section.currentTrends
+                                    .slice(0, 3)
+                                    .map((trend, trendIndex) => (
+                                      <span
+                                        key={trendIndex}
+                                        className="px-2 py-1 rounded-md bg-purple-500/20 text-purple-300 text-xs border border-purple-500/30">
+                                        {trend.split(" - ")[0]}
+                                      </span>
+                                    ))}
+                                  {section.currentTrends.length > 3 && (
+                                    <span className="px-2 py-1 rounded-md bg-slate-500/20 text-slate-400 text-xs">
+                                      +{section.currentTrends.length - 3} more
+                                    </span>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </motion.div>
@@ -1776,261 +1796,6 @@ export default function Home() {
           </div>
         </div>
       </motion.div>
-
-      {/* Project Detail Modal */}
-      {selectedProject && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-          onClick={() => setSelectedProject(null)}>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 50 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 50 }}
-            transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-slate-900/95 backdrop-blur-sm rounded-2xl border border-white/20 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}>
-            {/* Close Button */}
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700/80 transition-colors duration-200">
-              <X className="w-5 h-5" />
-            </button>
-
-            {/* Modal Content */}
-            <div className="p-6">
-              {/* Header */}
-              <div className="mb-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                      {selectedProject.title}
-                    </h2>
-                    <p className="text-slate-300 text-lg mb-4">
-                      {selectedProject.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Project Meta Info */}
-                <div className="flex flex-wrap gap-4 mb-6">
-                  <div className="flex items-center space-x-2 text-sm">
-                    <Calendar className="w-4 h-4 text-blue-400" />
-                    <span className="text-slate-300">
-                      {selectedProject.date}
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-sm">
-                    <div
-                      className={`w-3 h-3 rounded-full ${
-                        selectedProject.status === "Completed"
-                          ? "bg-green-400"
-                          : selectedProject.status === "In Progress"
-                          ? "bg-yellow-400"
-                          : "bg-blue-400"
-                      }`}
-                    />
-                    <span className="text-slate-300">
-                      {selectedProject.status}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Technology Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {selectedProject.tech?.map((tech: string, index: number) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 text-xs font-medium rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Media Section */}
-              <div className="mb-8">
-                {/* Video */}
-                {selectedProject.video && (
-                  <div className="mb-6">
-                    <h3 className="text-lg font-semibold text-white mb-3 flex items-center space-x-2">
-                      <Play className="w-5 h-5 text-red-400" />
-                      <span>Project Demo</span>
-                    </h3>
-                    <div className="aspect-video rounded-lg overflow-hidden bg-slate-800 border border-white/10">
-                      <video
-                        controls
-                        className="w-full h-full object-cover"
-                        poster={selectedProject.image}>
-                        <source src={selectedProject.video} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    </div>
-                  </div>
-                )}
-
-                {/* Gallery */}
-                {selectedProject.gallery &&
-                  selectedProject.gallery.length > 0 && (
-                    <div className="mb-6">
-                      <h3 className="text-lg font-semibold text-white mb-3">
-                        Project Gallery
-                      </h3>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        {selectedProject.gallery.map(
-                          (image: string, index: number) => (
-                            <div
-                              key={index}
-                              className="aspect-video rounded-lg overflow-hidden bg-slate-800 border border-white/10">
-                              <Image
-                                src={image}
-                                alt={`${selectedProject.title} gallery ${
-                                  index + 1
-                                }`}
-                                width={400}
-                                height={225}
-                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                              />
-                            </div>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  )}
-              </div>
-
-              {/* Project Details Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                {/* Objectives */}
-                {selectedProject.objectives && (
-                  <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
-                    <h3 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
-                      <Target className="w-5 h-5 text-green-400" />
-                      <span>Objectives</span>
-                    </h3>
-                    <ul className="space-y-2">
-                      {selectedProject.objectives.map(
-                        (objective: string, index: number) => (
-                          <li
-                            key={index}
-                            className="text-slate-300 text-sm flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0" />
-                            <span>{objective}</span>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Benefits */}
-                {selectedProject.benefits && (
-                  <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
-                    <h3 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
-                      <Zap className="w-5 h-5 text-yellow-400" />
-                      <span>Benefits</span>
-                    </h3>
-                    <ul className="space-y-2">
-                      {selectedProject.benefits.map(
-                        (benefit: string, index: number) => (
-                          <li
-                            key={index}
-                            className="text-slate-300 text-sm flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2 flex-shrink-0" />
-                            <span>{benefit}</span>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                  </div>
-                )}
-              </div>
-
-              {/* Features */}
-              {selectedProject.features && (
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6 mb-6">
-                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
-                    <Cpu className="w-5 h-5 text-purple-400" />
-                    <span>Key Features</span>
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {selectedProject.features.map(
-                      (feature: string, index: number) => (
-                        <div
-                          key={index}
-                          className="flex items-center space-x-2 text-slate-300 text-sm">
-                          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full flex-shrink-0" />
-                          <span>{feature}</span>
-                        </div>
-                      )
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Challenges & Impact */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Challenges */}
-                {selectedProject.challenges && (
-                  <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
-                    <h3 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
-                      <Brain className="w-5 h-5 text-red-400" />
-                      <span>Challenges</span>
-                    </h3>
-                    <p className="text-slate-300 text-sm leading-relaxed">
-                      {selectedProject.challenges}
-                    </p>
-                  </div>
-                )}
-
-                {/* Impact */}
-                {selectedProject.impact && (
-                  <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
-                    <h3 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
-                      <Users className="w-5 h-5 text-blue-400" />
-                      <span>Impact</span>
-                    </h3>
-                    <p className="text-slate-300 text-sm leading-relaxed">
-                      {selectedProject.impact}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-white/10">
-                {selectedProject.demoUrl && (
-                  <motion.a
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    href={selectedProject.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-200">
-                    <ExternalLink className="w-4 h-4" />
-                    <span>Live Demo</span>
-                  </motion.a>
-                )}
-
-                {selectedProject.sourceUrl && (
-                  <motion.a
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    href={selectedProject.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 rounded-lg bg-gray-600/20 text-gray-300 border border-gray-600/30 hover:bg-gray-600/30 hover:text-white transition-all duration-200">
-                    <Github className="w-4 h-4" />
-                    <span>Source Code</span>
-                  </motion.a>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
 
       {/* Footer */}
       <motion.footer

@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { motion } from "framer-motion";
 import {
   ArrowLeft,

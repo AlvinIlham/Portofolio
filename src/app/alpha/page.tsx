@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   ArrowLeft,
   Cpu,
@@ -11,11 +12,12 @@ import {
   Gamepad2,
   Brain,
   Apple,
+  ChevronDown,
+  ChevronUp,
   ExternalLink,
-  Github,
-  Star,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const techCategories = [
   {
@@ -24,21 +26,45 @@ const techCategories = [
     description: "Immersive AR experiences and applications",
     icon: Eye,
     color: "from-cyan-500 to-blue-500",
-    projects: [
-      {
-        title: "AR Shopping Assistant",
-        description: "Virtual try-on and product visualization for e-commerce",
-        tech: ["Unity", "ARCore", "C#", "Android"],
-        status: "Completed",
-        stars: 124,
-      },
-      {
-        title: "Educational AR Museum",
-        description: "Interactive museum exhibits with AR storytelling",
-        tech: ["ARKit", "Swift", "iOS", "3D Modeling"],
-        status: "In Progress",
-        stars: 87,
-      },
+    overview:
+      "Augmented Reality (AR) adalah teknologi yang menggabungkan dunia nyata dengan elemen digital, menciptakan pengalaman interaktif yang mengubah cara kita berinteraksi dengan lingkungan sekitar.",
+    history:
+      "AR pertama kali dikembangkan pada tahun 1968 oleh Ivan Sutherland dengan perangkat 'The Sword of Damocles'. Perkembangan signifikan terjadi pada 1990-an dengan istilah 'Augmented Reality' yang diciptakan oleh Tom Caudell. Era modern AR dimulai dengan peluncuran ARToolkit pada 1999 dan mencapai puncaknya dengan ARCore (Google) dan ARKit (Apple) pada 2017.",
+    technologies: [
+      "ARCore (Google) - Platform AR untuk Android",
+      "ARKit (Apple) - Framework AR untuk iOS",
+      "Unity 3D - Engine untuk pengembangan aplikasi AR",
+      "Vuforia - Platform AR enterprise",
+      "8th Wall - AR berbasis web",
+      "WebXR - Standar web untuk AR/VR",
+      "OpenCV - Computer vision library",
+      "SLAM - Simultaneous Localization and Mapping",
+    ],
+    applications: [
+      "E-commerce - Virtual try-on dan product visualization",
+      "Pendidikan - Interactive learning dan virtual laboratories",
+      "Healthcare - Surgical planning dan medical training",
+      "Manufacturing - Assembly guidance dan quality control",
+      "Entertainment - Gaming dan interactive experiences",
+      "Marketing - Interactive advertising campaigns",
+      "Navigation - AR-based GPS dan indoor navigation",
+      "Social Media - AR filters dan effects",
+    ],
+    currentTrends: [
+      "WebAR - AR yang berjalan di browser tanpa aplikasi",
+      "Cloud-based AR - Processing di cloud untuk performa optimal",
+      "AI-powered AR - Integrasi machine learning dan computer vision",
+      "Social AR - Shared AR experiences untuk multiple users",
+      "Industrial AR - Aplikasi untuk manufacturing dan maintenance",
+      "AR Glass - Wearable AR devices seperti HoloLens dan Magic Leap",
+    ],
+    challenges: [
+      "Hardware limitations - Keterbatasan processing power device mobile",
+      "Tracking accuracy - Maintaining precise object tracking",
+      "User experience - Creating intuitive AR interfaces",
+      "Battery consumption - Optimizing power usage",
+      "Content creation - Developing high-quality 3D assets",
+      "Privacy concerns - Handling camera dan location data",
     ],
   },
   {
@@ -47,31 +73,45 @@ const techCategories = [
     description: "Modern web applications and platforms",
     icon: Code,
     color: "from-green-500 to-emerald-500",
-    projects: [
-      {
-        title: "E-learning Platform",
-        description:
-          "Full-stack learning management system with real-time features",
-        tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-        status: "Completed",
-        stars: 256,
-      },
-      {
-        title: "Real Estate Portal",
-        description:
-          "Property listing and management platform with advanced search",
-        tech: ["React", "Node.js", "MongoDB", "Express"],
-        status: "Completed",
-        stars: 189,
-      },
-      {
-        title: "Social Media Dashboard",
-        description:
-          "Analytics and management tool for multiple social platforms",
-        tech: ["Vue.js", "Laravel", "MySQL", "Redis"],
-        status: "In Progress",
-        stars: 145,
-      },
+    overview:
+      "Website Development adalah proses menciptakan aplikasi web modern yang responsif, interaktif, dan user-friendly menggunakan teknologi terdepan untuk memberikan pengalaman digital yang optimal.",
+    history:
+      "Pengembangan web dimulai dari HTML statis pada 1990-an, berkembang menjadi dynamic websites dengan PHP dan JavaScript pada 2000-an, hingga era modern dengan framework seperti React, Vue, dan Angular pada 2010-an. Saat ini, fokus pada JAMstack, serverless, dan Progressive Web Apps (PWA).",
+    technologies: [
+      "Frontend: React, Vue.js, Angular, Svelte",
+      "Backend: Node.js, Python (Django/Flask), PHP (Laravel)",
+      "Full-stack: Next.js, Nuxt.js, SvelteKit",
+      "Database: PostgreSQL, MongoDB, Redis, Supabase",
+      "Cloud: Vercel, Netlify, AWS, Google Cloud",
+      "DevOps: Docker, Kubernetes, CI/CD pipelines",
+      "Styling: Tailwind CSS, Styled Components, SCSS",
+      "Testing: Jest, Cypress, Playwright, Vitest",
+    ],
+    applications: [
+      "E-commerce platforms dengan AI recommendations",
+      "Content Management Systems (CMS)",
+      "Social media platforms dan community websites",
+      "Educational platforms dan Learning Management Systems",
+      "Business applications dan enterprise solutions",
+      "Portfolio websites dan company profiles",
+      "Blogging platforms dan news websites",
+      "Real-time applications dengan WebSocket integration",
+    ],
+    currentTrends: [
+      "JAMstack architecture - JavaScript, APIs, dan Markup",
+      "Serverless computing - Function-as-a-Service (FaaS)",
+      "Progressive Web Apps (PWA) - Web apps yang berfungsi seperti native apps",
+      "Headless CMS - Content management terpisah dari frontend",
+      "Micro-frontends - Modular frontend architecture",
+      "Edge computing - Computing yang lebih dekat dengan user",
+    ],
+    challenges: [
+      "Performance optimization - Loading speed dan user experience",
+      "Security - Protecting against cyber threats dan vulnerabilities",
+      "Cross-browser compatibility - Ensuring consistent experience",
+      "Mobile responsiveness - Optimal display pada semua device",
+      "SEO optimization - Search engine visibility",
+      "Accessibility - Making websites usable for all users",
     ],
   },
   {
@@ -80,22 +120,45 @@ const techCategories = [
     description: "Native Android applications and services",
     icon: Smartphone,
     color: "from-green-600 to-lime-500",
-    projects: [
-      {
-        title: "Fitness Tracker Pro",
-        description: "Comprehensive health and fitness monitoring application",
-        tech: ["Kotlin", "Room", "Coroutines", "MVVM"],
-        status: "Completed",
-        stars: 342,
-      },
-      {
-        title: "Language Exchange App",
-        description:
-          "Connect language learners worldwide for practice sessions",
-        tech: ["Java", "Firebase", "WebRTC", "Material Design"],
-        status: "Completed",
-        stars: 198,
-      },
+    overview:
+      "Android Development adalah proses pembuatan aplikasi mobile untuk platform Android menggunakan teknologi modern seperti Kotlin, Jetpack Compose, dan Android SDK untuk menciptakan pengalaman mobile yang native dan optimal.",
+    history:
+      "Android pertama kali diumumkan Google pada 2007 dan diluncurkan pada 2008. Perkembangan signifikan termasuk pengenalan Android Studio (2013), Kotlin sebagai bahasa resmi (2017), Jetpack Compose (2021), dan fokus pada Material You design (2021).",
+    technologies: [
+      "Bahasa: Kotlin (primary), Java, Dart (Flutter)",
+      "UI Framework: Jetpack Compose, XML layouts",
+      "Architecture: MVVM, Clean Architecture, Repository Pattern",
+      "Database: Room, SQLite, Firebase Firestore",
+      "Networking: Retrofit, OkHttp, Ktor",
+      "Dependency Injection: Hilt, Dagger",
+      "Testing: JUnit, Espresso, Mockito",
+      "Tools: Android Studio, Gradle, ADB",
+    ],
+    applications: [
+      "Social media dan messaging apps",
+      "E-commerce dan shopping applications",
+      "Health & fitness tracking apps",
+      "Educational apps dan e-learning platforms",
+      "Entertainment apps (streaming, gaming)",
+      "Productivity tools dan business apps",
+      "IoT control applications",
+      "Augmented Reality (AR) applications",
+    ],
+    currentTrends: [
+      "Jetpack Compose - Modern declarative UI toolkit",
+      "Kotlin Multiplatform - Shared code across platforms",
+      "Android 14 features - Privacy improvements dan better performance",
+      "Material You - Dynamic theming based on user preferences",
+      "Foldable devices support - Adaptive UI for flexible screens",
+      "5G integration - High-speed connectivity features",
+    ],
+    challenges: [
+      "Device fragmentation - Supporting various screen sizes dan Android versions",
+      "Performance optimization - Battery life dan memory management",
+      "Security - Protecting user data dan preventing malware",
+      "App size optimization - Reducing APK size",
+      "Compatibility - Ensuring app works across different devices",
+      "User experience - Creating intuitive dan engaging interfaces",
     ],
   },
   {
@@ -104,21 +167,45 @@ const techCategories = [
     description: "3D models, animations, and visual effects",
     icon: Palette,
     color: "from-orange-500 to-red-500",
-    projects: [
-      {
-        title: "Architectural Visualizations",
-        description: "Photorealistic building and interior design renders",
-        tech: ["Blender", "Cycles", "Substance Painter", "Photoshop"],
-        status: "Ongoing",
-        stars: 276,
-      },
-      {
-        title: "Character Animation Suite",
-        description: "Rigged characters and animation sequences for games",
-        tech: ["Blender", "Rigify", "Animation Nodes", "Unity"],
-        status: "Completed",
-        stars: 167,
-      },
+    overview:
+      "Blender/3D Modeling adalah seni dan ilmu menciptakan objek, karakter, dan lingkungan tiga dimensi menggunakan software canggih untuk visualisasi, animasi, dan rendering yang realistis.",
+    history:
+      "3D modeling dimulai pada 1960-an dengan wireframe graphics, berkembang pesat pada 1980-an dengan software seperti AutoCAD. Blender diluncurkan pada 1998 sebagai software open-source dan menjadi standar industri untuk 3D creation suite yang gratis namun powerful.",
+    technologies: [
+      "Blender - Open-source 3D creation suite",
+      "Autodesk Maya - Professional 3D animation software",
+      "3ds Max - 3D modeling dan rendering",
+      "Cinema 4D - Motion graphics dan 3D animation",
+      "ZBrush - Digital sculpting",
+      "Substance Suite - Texturing dan material creation",
+      "Houdini - Procedural 3D animation",
+      "Unity/Unreal Engine - Real-time 3D engines",
+    ],
+    applications: [
+      "Architectural visualization - Building dan interior design",
+      "Product visualization - Marketing dan prototyping",
+      "Character modeling - Gaming dan animation",
+      "Motion graphics - Advertising dan branding",
+      "Visual effects (VFX) - Film dan television",
+      "3D printing - Prototyping dan manufacturing",
+      "Virtual Reality environments",
+      "Medical visualization - Anatomy dan surgical planning",
+    ],
+    currentTrends: [
+      "Real-time rendering - Instant visual feedback",
+      "Procedural modeling - Algorithm-based object creation",
+      "PBR materials - Physically Based Rendering",
+      "Cloud rendering - GPU farms untuk complex scenes",
+      "AI-assisted modeling - Machine learning untuk automation",
+      "VR sculpting - Creating 3D art in virtual reality",
+    ],
+    challenges: [
+      "Learning curve - Mastering complex software interfaces",
+      "Hardware requirements - High-end GPUs untuk rendering",
+      "Time consumption - Detailed models require significant time",
+      "File management - Organizing complex project assets",
+      "Rendering optimization - Balancing quality dan speed",
+      "Staying updated - Rapidly evolving software features",
     ],
   },
   {
@@ -127,28 +214,45 @@ const techCategories = [
     description: "Interactive games and gaming experiences",
     icon: Gamepad2,
     color: "from-purple-500 to-pink-500",
-    projects: [
-      {
-        title: "Space Explorer VR",
-        description: "Virtual reality space exploration and puzzle game",
-        tech: ["Unity", "C#", "Oculus SDK", "Blender"],
-        status: "Completed",
-        stars: 423,
-      },
-      {
-        title: "Educational Math Game",
-        description: "Gamified mathematics learning for children",
-        tech: ["Godot", "GDScript", "2D Animation", "Audio"],
-        status: "Completed",
-        stars: 234,
-      },
-      {
-        title: "Multiplayer Strategy Game",
-        description: "Real-time strategy game with online multiplayer",
-        tech: ["Unreal Engine", "C++", "Networking", "AI"],
-        status: "In Progress",
-        stars: 156,
-      },
+    overview:
+      "Game Development adalah proses kreatif pembuatan video game yang menggabungkan programming, desain, seni, dan storytelling untuk menciptakan pengalaman interaktif yang engaging dan memorable.",
+    history:
+      "Game development dimulai pada 1950-an dengan game sederhana seperti Tennis for Two. Era arcade 1970-80an, konsol gaming 1980-90an, dan revolusi mobile gaming 2000-an membentuk industri modern yang kini bernilai ratusan miliar dollar.",
+    technologies: [
+      "Game Engines: Unity, Unreal Engine, Godot",
+      "Programming: C#, C++, JavaScript, Python",
+      "Graphics: OpenGL, DirectX, Vulkan",
+      "Audio: FMOD, Wwise, OpenAL",
+      "Physics: Box2D, Bullet Physics, Havok",
+      "Networking: Photon, Mirror, Custom solutions",
+      "Platform SDKs: Steam, Mobile (iOS/Android)",
+      "Version Control: Git, Perforce, Plastic SCM",
+    ],
+    applications: [
+      "Mobile games - Casual dan hyper-casual gaming",
+      "PC games - Indie dan AAA development",
+      "Console games - PlayStation, Xbox, Nintendo",
+      "Web games - Browser-based gaming",
+      "VR/AR games - Immersive gaming experiences",
+      "Educational games - Gamification of learning",
+      "Serious games - Training dan simulation",
+      "Esports - Competitive gaming platforms",
+    ],
+    currentTrends: [
+      "Cloud gaming - Streaming games without downloads",
+      "Indie game renaissance - Small teams creating hit games",
+      "Live service games - Ongoing content updates",
+      "Cross-platform play - Gaming across multiple devices",
+      "AI in games - Procedural generation dan smart NPCs",
+      "Blockchain gaming - NFTs dan play-to-earn models",
+    ],
+    challenges: [
+      "Technical complexity - Optimizing for multiple platforms",
+      "Creative vision - Balancing innovation dengan market demands",
+      "Team coordination - Managing multidisciplinary teams",
+      "Budget constraints - Controlling development costs",
+      "Quality assurance - Thorough testing across platforms",
+      "Market competition - Standing out in saturated market",
     ],
   },
   {
@@ -157,28 +261,45 @@ const techCategories = [
     description: "AI models and intelligent applications",
     icon: Brain,
     color: "from-indigo-500 to-purple-500",
-    projects: [
-      {
-        title: "Image Recognition API",
-        description: "Real-time object detection and classification service",
-        tech: ["Python", "TensorFlow", "OpenCV", "FastAPI"],
-        status: "Completed",
-        stars: 378,
-      },
-      {
-        title: "Natural Language Processor",
-        description: "Multilingual text analysis and sentiment detection",
-        tech: ["PyTorch", "Transformers", "BERT", "spaCy"],
-        status: "Completed",
-        stars: 291,
-      },
-      {
-        title: "Recommendation Engine",
-        description: "Personalized content recommendation system",
-        tech: ["Scikit-learn", "Pandas", "NumPy", "Redis"],
-        status: "In Progress",
-        stars: 198,
-      },
+    overview:
+      "Machine Learning adalah cabang artificial intelligence yang memungkinkan komputer belajar dan membuat prediksi atau keputusan tanpa pemrograman eksplisit, menggunakan algoritma untuk menganalisis data dan menemukan pola.",
+    history:
+      "ML dimulai pada 1950-an dengan konsep neural networks. Perkembangan significant pada 1980-90an dengan backpropagation, lalu revolusi deep learning pada 2010-an dengan breakthrough seperti AlexNet (2012) dan GPT models yang mengubah landscape AI modern.",
+    technologies: [
+      "Frameworks: TensorFlow, PyTorch, Scikit-learn",
+      "Languages: Python, R, Julia, Scala",
+      "Cloud Platforms: AWS ML, Google AI, Azure ML",
+      "Data Processing: Pandas, NumPy, Apache Spark",
+      "Visualization: Matplotlib, Seaborn, Plotly",
+      "MLOps: MLflow, Kubeflow, DVC",
+      "Specialized: OpenCV (Computer Vision), NLTK (NLP)",
+      "Hardware: GPUs, TPUs, specialized AI chips",
+    ],
+    applications: [
+      "Computer Vision - Image recognition dan object detection",
+      "Natural Language Processing - Chatbots dan language translation",
+      "Recommendation Systems - Personalized content delivery",
+      "Predictive Analytics - Business forecasting dan insights",
+      "Healthcare AI - Medical diagnosis dan drug discovery",
+      "Autonomous Systems - Self-driving cars dan robots",
+      "Financial Services - Fraud detection dan algorithmic trading",
+      "Smart IoT - Intelligent connected devices",
+    ],
+    currentTrends: [
+      "Large Language Models (LLMs) - GPT, BERT, dan successors",
+      "Generative AI - Creating content from text prompts",
+      "Edge AI - Running ML models on mobile devices",
+      "Federated Learning - Training models without centralizing data",
+      "AutoML - Automated machine learning pipelines",
+      "Explainable AI - Understanding model decision-making",
+    ],
+    challenges: [
+      "Data quality - Ensuring clean dan representative datasets",
+      "Model interpretability - Understanding black box decisions",
+      "Bias dan fairness - Preventing discriminatory outcomes",
+      "Computational costs - Managing expensive training processes",
+      "Privacy concerns - Protecting sensitive training data",
+      "Deployment complexity - Moving from lab to production",
     ],
   },
   {
@@ -187,21 +308,45 @@ const techCategories = [
     description: "Immersive VR experiences and applications",
     icon: Eye,
     color: "from-pink-500 to-rose-500",
-    projects: [
-      {
-        title: "Virtual Training Simulator",
-        description: "Professional training scenarios in virtual environments",
-        tech: ["Unity", "XR Toolkit", "C#", "Oculus"],
-        status: "Completed",
-        stars: 267,
-      },
-      {
-        title: "VR Art Gallery",
-        description: "Virtual exhibition space for digital and traditional art",
-        tech: ["Unreal Engine", "Blueprint", "VR Template", "Modeling"],
-        status: "In Progress",
-        stars: 145,
-      },
+    overview:
+      "Virtual Reality adalah teknologi yang menciptakan lingkungan simulasi tiga dimensi yang imersif, memungkinkan user berinteraksi dengan dunia digital seolah-olah nyata melalui headset dan controller khusus.",
+    history:
+      "Konsep VR dimulai pada 1960-an dengan Sensorama dan HMD pertama. Perkembangan modern dimulai dengan Oculus Rift Kickstarter (2012), diikuti PlayStation VR, HTC Vive, dan generasi terbaru seperti Meta Quest dan Apple Vision Pro.",
+    technologies: [
+      "Hardware: Oculus/Meta Quest, PICO, HTC Vive, PlayStation VR",
+      "Game Engines: Unity 3D, Unreal Engine",
+      "SDKs: OpenXR, Oculus SDK, SteamVR",
+      "Tracking: 6DOF tracking, hand tracking, eye tracking",
+      "Audio: Spatial audio, haptic feedback",
+      "Development: C#, C++, JavaScript (WebXR)",
+      "Platforms: PC VR, Standalone VR, Mobile VR",
+      "Cloud: VR streaming dan remote rendering",
+    ],
+    applications: [
+      "Gaming dan Entertainment - Immersive gaming experiences",
+      "Education dan Training - Virtual classrooms dan simulations",
+      "Healthcare - Medical training dan therapy applications",
+      "Architecture - Virtual building walkthroughs",
+      "Manufacturing - Assembly training dan design review",
+      "Social VR - Virtual meetings dan social spaces",
+      "Tourism - Virtual travel experiences",
+      "Fitness - VR workout dan sports simulation",
+    ],
+    currentTrends: [
+      "Standalone VR - No PC required, all-in-one headsets",
+      "Mixed Reality (MR) - Blending virtual dengan real world",
+      "Social VR platforms - Virtual workspaces dan hangouts",
+      "Haptic technology - Advanced touch feedback",
+      "Eye tracking - Foveated rendering dan gaze interaction",
+      "Wireless VR - Eliminating cables untuk better mobility",
+    ],
+    challenges: [
+      "Motion sickness - Reducing VR-induced discomfort",
+      "Hardware costs - Making VR accessible to mainstream",
+      "Content creation - Developing compelling VR experiences",
+      "User interface - Designing intuitive VR interactions",
+      "Performance optimization - Maintaining high framerates",
+      "Physical space - Requiring adequate room for VR",
     ],
   },
   {
@@ -210,39 +355,64 @@ const techCategories = [
     description: "Native iOS applications and experiences",
     icon: Apple,
     color: "from-blue-500 to-indigo-500",
-    projects: [
-      {
-        title: "Personal Finance Manager",
-        description: "Comprehensive budgeting and expense tracking app",
-        tech: ["Swift", "SwiftUI", "Core Data", "CloudKit"],
-        status: "Completed",
-        stars: 356,
-      },
-      {
-        title: "Meditation & Mindfulness",
-        description: "Guided meditation sessions with progress tracking",
-        tech: ["Swift", "AVFoundation", "HealthKit", "StoreKit"],
-        status: "Completed",
-        stars: 289,
-      },
+    overview:
+      "iOS Development adalah proses pembuatan aplikasi native untuk perangkat Apple (iPhone, iPad, Apple Watch) menggunakan bahasa Swift dan tools resmi Apple untuk menghadirkan pengalaman user yang optimal dan terintegrasi.",
+    history:
+      "iOS SDK pertama kali dirilis pada 2008 bersamaan dengan App Store. Perkembangan major termasuk pengenalan Swift (2014), SwiftUI (2019), dan berbagai framework seperti Core ML, ARKit, yang terus berkembang seiring update iOS tahunan.",
+    technologies: [
+      "Languages: Swift (primary), Objective-C (legacy)",
+      "UI Frameworks: SwiftUI, UIKit",
+      "Development: Xcode, Interface Builder",
+      "Architecture: MVC, MVVM, VIPER, Clean Architecture",
+      "Database: Core Data, SQLite, Realm",
+      "Networking: URLSession, Alamofire",
+      "Testing: XCTest, Quick/Nimble",
+      "Distribution: App Store Connect, TestFlight",
+    ],
+    applications: [
+      "Social networking apps dengan iOS integration",
+      "Productivity tools memanfaatkan ecosystem Apple",
+      "Health & fitness apps dengan HealthKit integration",
+      "E-commerce apps dengan Apple Pay integration",
+      "Creative apps untuk photography dan video editing",
+      "Educational apps dengan Apple Pencil support",
+      "AR applications menggunakan ARKit",
+      "Watch apps untuk Apple Watch integration",
+    ],
+    currentTrends: [
+      "SwiftUI adoption - Declarative UI framework",
+      "iOS 17 features - Interactive widgets dan enhanced privacy",
+      "Apple Silicon optimization - Native performance on M-series chips",
+      "App Clips - Lightweight app experiences",
+      "Privacy-first development - App Tracking Transparency",
+      "Cross-platform dengan Swift - Server-side Swift development",
+    ],
+    challenges: [
+      "App Store guidelines - Strict review process dan policies",
+      "Device compatibility - Supporting various iOS versions",
+      "Performance optimization - Efficient memory dan battery usage",
+      "Design consistency - Following Human Interface Guidelines",
+      "Testing complexity - Multiple device sizes dan configurations",
+      "Development costs - Apple Developer Program dan hardware requirements",
     ],
   },
 ];
 
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case "Completed":
-      return "bg-green-500/20 text-green-300 border-green-500/30";
-    case "In Progress":
-      return "bg-yellow-500/20 text-yellow-300 border-yellow-500/30";
-    case "Ongoing":
-      return "bg-blue-500/20 text-blue-300 border-blue-500/30";
-    default:
-      return "bg-gray-500/20 text-gray-300 border-gray-500/30";
-  }
-};
-
 export default function AlphaPage() {
+  const router = useRouter();
+  const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
+
+  const toggleCategory = (categoryId: string) => {
+    setExpandedCategories((prev) =>
+      prev.includes(categoryId)
+        ? prev.filter((id) => id !== categoryId)
+        : [...prev, categoryId]
+    );
+  };
+
+  const handleExploreProjects = (categoryId: string) => {
+    router.push(`/alpha/${categoryId}`);
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20">
       {/* Header */}
@@ -299,83 +469,182 @@ export default function AlphaPage() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="relative">
               {/* Category Header */}
-              <div className="flex items-center space-x-4 mb-8">
-                <div
-                  className={`p-3 rounded-xl bg-gradient-to-br ${category.color}`}>
-                  <category.icon className="w-8 h-8 text-white" />
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center space-x-4">
+                  <div
+                    className={`p-3 rounded-xl bg-gradient-to-br ${category.color}`}>
+                    <category.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">
+                      {category.name}
+                    </h3>
+                    <p className="text-slate-300">{category.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white">
-                    {category.name}
-                  </h3>
-                  <p className="text-slate-300">{category.description}</p>
+
+                {/* Action Buttons */}
+                <div className="flex items-center space-x-3">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => handleExploreProjects(category.id)}
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg bg-gradient-to-r ${category.color} text-white font-medium hover:shadow-lg transition-all duration-200`}>
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Explore Projects</span>
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => toggleCategory(category.id)}
+                    className="flex items-center space-x-2 px-4 py-2 rounded-lg bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-all duration-200">
+                    {expandedCategories.includes(category.id) ? (
+                      <>
+                        <ChevronUp className="w-4 h-4" />
+                        <span>Hide Details</span>
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="w-4 h-4" />
+                        <span>Show Details</span>
+                      </>
+                    )}
+                  </motion.button>
                 </div>
               </div>
 
-              {/* Projects Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {category.projects.map((project, projectIndex) => (
+              {/* Field Information - Conditional Rendering */}
+              {expandedCategories.includes(category.id) && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-8 overflow-hidden">
+                  {/* Overview Section */}
                   <motion.div
-                    key={project.title}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      duration: 0.4,
-                      delay: index * 0.1 + projectIndex * 0.1,
-                    }}
-                    className="group cursor-pointer">
-                    <div className="relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 h-full">
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-                      />
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                    <h4 className="text-lg font-semibold text-white mb-3 flex items-center">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                      Overview
+                    </h4>
+                    <p className="text-slate-300 leading-relaxed">
+                      {category.overview}
+                    </p>
+                  </motion.div>
 
-                      <div className="p-6 h-full flex flex-col">
-                        <div className="flex-1">
-                          <div className="flex items-start justify-between mb-3">
-                            <h4 className="text-xl font-semibold text-white">
-                              {project.title}
-                            </h4>
-                            <div className="flex items-center space-x-1 text-yellow-400">
-                              <Star className="w-4 h-4 fill-current" />
-                              <span className="text-sm">{project.stars}</span>
-                            </div>
-                          </div>
-                          <p className="text-slate-300 text-sm mb-4">
-                            {project.description}
-                          </p>
+                  {/* History Section */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                    <h4 className="text-lg font-semibold text-white mb-3 flex items-center">
+                      <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                      History & Evolution
+                    </h4>
+                    <p className="text-slate-300 leading-relaxed">
+                      {category.history}
+                    </p>
+                  </motion.div>
 
-                          {/* Tech Stack */}
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {project.tech.map((tech) => (
-                              <span
-                                key={tech}
-                                className="px-2 py-1 rounded-md bg-white/10 text-slate-300 text-xs border border-white/20">
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
+                  {/* Technologies Section */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                    <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+                      <div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
+                      Technologies & Tools
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {category.technologies.map((tech, techIndex) => (
+                        <div
+                          key={techIndex}
+                          className="flex items-center p-3 rounded-lg bg-white/5 border border-white/10 hover:border-purple-400/30 transition-colors duration-200">
+                          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3"></div>
+                          <span className="text-slate-200 text-sm">{tech}</span>
                         </div>
-
-                        {/* Project Meta */}
-                        <div className="border-t border-white/10 pt-4 mt-4">
-                          <div className="flex items-center justify-between">
-                            <span
-                              className={`px-3 py-1 rounded-full text-xs border ${getStatusColor(
-                                project.status
-                              )}`}>
-                              {project.status}
-                            </span>
-                            <div className="flex items-center space-x-2">
-                              <Github className="w-4 h-4 text-slate-400 hover:text-white transition-colors cursor-pointer" />
-                              <ExternalLink className="w-4 h-4 text-slate-400 hover:text-white transition-colors cursor-pointer" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </motion.div>
-                ))}
-              </div>
+
+                  {/* Applications Section */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                    <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+                      <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                      Applications & Use Cases
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {category.applications.map((app, appIndex) => (
+                        <div
+                          key={appIndex}
+                          className="flex items-center p-3 rounded-lg bg-white/5 border border-white/10 hover:border-cyan-400/30 transition-colors duration-200">
+                          <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-3"></div>
+                          <span className="text-slate-200 text-sm">{app}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  {/* Current Trends Section */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.6 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                    <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+                      <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
+                      Current Trends
+                    </h4>
+                    <div className="space-y-3">
+                      {category.currentTrends.map((trend, trendIndex) => (
+                        <div
+                          key={trendIndex}
+                          className="flex items-start p-3 rounded-lg bg-white/5 border border-white/10 hover:border-yellow-400/30 transition-colors duration-200">
+                          <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mr-3 mt-2"></div>
+                          <span className="text-slate-200 text-sm leading-relaxed">
+                            {trend}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  {/* Challenges Section */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.7 }}
+                    className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                    <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+                      <div className="w-2 h-2 bg-red-400 rounded-full mr-3"></div>
+                      Challenges & Considerations
+                    </h4>
+                    <div className="space-y-3">
+                      {category.challenges.map((challenge, challengeIndex) => (
+                        <div
+                          key={challengeIndex}
+                          className="flex items-start p-3 rounded-lg bg-white/5 border border-white/10 hover:border-red-400/30 transition-colors duration-200">
+                          <div className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 mt-2"></div>
+                          <span className="text-slate-200 text-sm leading-relaxed">
+                            {challenge}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
             </motion.div>
           ))}
         </div>
