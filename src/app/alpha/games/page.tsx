@@ -235,6 +235,12 @@ export default function GamesProjectsPage() {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4">
+                <Link
+                  href={`/alpha/games/projects/${selectedProject.id}`}
+                  className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
+                  <Gamepad2 className="w-4 h-4" />
+                  <span>Lihat Detail Lengkap</span>
+                </Link>
                 {selectedProject.demoUrl && (
                   <a
                     href={selectedProject.demoUrl}

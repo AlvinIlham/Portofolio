@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Link from "next/link";
 import {
   ArrowLeft,
   Eye,
@@ -12,8 +13,8 @@ import {
   Users,
   Code,
   Zap,
+  FileText,
 } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 
 const arProjects = [
@@ -405,7 +406,13 @@ export default function ARProjectsPage() {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex space-x-4 mt-8">
+                  <div className="flex flex-wrap gap-4 mt-8">
+                    <Link
+                      href={`/alpha/ar/projects/${project.id}`}
+                      className="flex items-center space-x-2 px-6 py-3 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:shadow-lg transition-all">
+                      <FileText className="w-5 h-5" />
+                      <span>Lihat Detail Lengkap</span>
+                    </Link>
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}

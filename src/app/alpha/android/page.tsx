@@ -1,7 +1,14 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Github, Play, X } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  Play,
+  X,
+  FileText,
+} from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -254,6 +261,12 @@ export default function AndroidProjectsPage() {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4">
+                <Link
+                  href={`/alpha/android/projects/${selectedProject.id}`}
+                  className="flex items-center space-x-2 px-6 py-3 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:shadow-lg transition-all">
+                  <FileText className="w-5 h-5" />
+                  <span>Lihat Detail Lengkap</span>
+                </Link>
                 {selectedProject.demoUrl && (
                   <a
                     href={selectedProject.demoUrl}

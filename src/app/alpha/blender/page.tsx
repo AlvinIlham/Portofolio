@@ -1,7 +1,14 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Github, X } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  X,
+  FileText,
+  Box,
+} from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -223,6 +230,12 @@ export default function BlenderProjectsPage() {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4">
+                <Link
+                  href={`/alpha/blender/projects/${selectedProject.id}`}
+                  className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg transition-colors">
+                  <Box className="w-4 h-4" />
+                  <span>Lihat Detail Lengkap</span>
+                </Link>
                 {selectedProject.demoUrl && (
                   <a
                     href={selectedProject.demoUrl}

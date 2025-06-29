@@ -235,6 +235,12 @@ export default function IOSProjectsPage() {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4">
+                <Link
+                  href={`/alpha/ios/projects/${selectedProject.id}`}
+                  className="flex items-center space-x-2 bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg transition-colors">
+                  <Apple className="w-4 h-4" />
+                  <span>Lihat Detail Lengkap</span>
+                </Link>
                 {selectedProject.demoUrl && (
                   <a
                     href={selectedProject.demoUrl}

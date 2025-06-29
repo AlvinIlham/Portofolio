@@ -8,6 +8,7 @@ import {
   Github,
   ExternalLink,
   Star,
+  FileText,
   Calendar,
   Users,
   Zap,
@@ -405,7 +406,13 @@ export default function WebProjectsPage() {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex space-x-4 mt-8">
+                  <div className="flex flex-wrap gap-4 mt-8">
+                    <Link
+                      href={`/alpha/web/projects/${project.id}`}
+                      className="flex items-center space-x-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:shadow-lg transition-all">
+                      <FileText className="w-5 h-5" />
+                      <span>Lihat Detail Lengkap</span>
+                    </Link>
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}

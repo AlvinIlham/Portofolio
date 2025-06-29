@@ -228,6 +228,12 @@ export default function VRProjectsPage() {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4">
+                <Link
+                  href={`/alpha/vr/projects/${selectedProject.id}`}
+                  className="flex items-center space-x-2 bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-lg transition-colors">
+                  <Headphones className="w-4 h-4" />
+                  <span>Lihat Detail Lengkap</span>
+                </Link>
                 {selectedProject.demoUrl && (
                   <a
                     href={selectedProject.demoUrl}
