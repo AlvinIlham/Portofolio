@@ -1,14 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  ArrowLeft,
-  ExternalLink,
-  Github,
-  X,
-  FileText,
-  Box,
-} from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, X, Box } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 

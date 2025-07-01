@@ -25,6 +25,7 @@ export default function GlobalNavigation() {
         <div className="flex items-center space-x-6">
           {navigationItems.map((item) => {
             const isActive = pathname === item.path;
+            const IconComponent = item.icon;
             return (
               <Link key={item.path} href={item.path}>
                 <motion.div
@@ -35,7 +36,7 @@ export default function GlobalNavigation() {
                       ? "bg-white/20 text-white"
                       : "text-slate-300 hover:text-white hover:bg-white/10"
                   }`}>
-                  <item.icon className="w-4 h-4" />
+                  <IconComponent className="w-4 h-4" />
                   <span className="text-sm font-medium hidden sm:block">
                     {item.name}
                   </span>
