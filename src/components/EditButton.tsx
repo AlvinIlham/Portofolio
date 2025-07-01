@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Edit3, Plus } from "lucide-react";
 import CRUDModal from "./CRUDModal";
 
@@ -19,8 +18,6 @@ export default function EditButton({
   variant = "edit",
   className = "",
 }: EditButtonProps) {
-  const [showCRUDModal, setShowCRUDModal] = useState(false);
-
   const handleEditClick = () => {
     // Edit button is disabled - no action
     return;
@@ -63,7 +60,7 @@ export default function EditButton({
       {/* CRUD Modal - Disabled */}
       <CRUDModal
         isOpen={false}
-        onClose={() => setShowCRUDModal(false)}
+        onClose={() => {}}
         category={category}
         item={item}
         onSave={handleSave}
