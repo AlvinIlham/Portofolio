@@ -17,6 +17,7 @@ import {
   ZoomIn,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface AchievementItem {
   title: string;
@@ -255,7 +256,7 @@ export default function AchievementsPage() {
                         <div className="relative h-full bg-slate-800/30 backdrop-blur-sm border border-white/10 rounded-3xl p-6 hover:scale-[1.02] transition-all duration-500 hover:shadow-2xl hover:shadow-yellow-500/10 hover:border-yellow-500/20">
                           {/* Achievement Image */}
                           <div className="relative mb-6 overflow-hidden rounded-2xl">
-                            <img
+                            <Image
                               src={
                                 achievement.media?.[0] ||
                                 `https://picsum.photos/400/300?random=${
@@ -263,6 +264,8 @@ export default function AchievementsPage() {
                                 }`
                               }
                               alt={`${achievement.title} achievement`}
+                              width={400}
+                              height={192}
                               className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement;
@@ -426,12 +429,14 @@ export default function AchievementsPage() {
 
               {/* Certificate Image */}
               <div className="relative">
-                <img
+                <Image
                   src={
                     selectedAchievement.media?.[0] ||
                     "https://picsum.photos/800/600?random=5"
                   }
                   alt={`${selectedAchievement.title} Certificate`}
+                  width={800}
+                  height={480}
                   className="w-full h-[60vh] object-cover"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;

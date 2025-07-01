@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Save, Trash2 } from "lucide-react";
 import { createSupabaseClient } from "@/lib/supabase";
+import Image from "next/image";
 
 interface CRUDModalProps {
   isOpen: boolean;
@@ -473,9 +474,11 @@ export default function CRUDModal({
                     />
                     {imagePreview && (
                       <div className="relative w-32 h-32">
-                        <img
+                        <Image
                           src={imagePreview}
                           alt="Preview"
+                          width={128}
+                          height={128}
                           className="w-full h-full object-cover rounded-lg"
                         />
                       </div>

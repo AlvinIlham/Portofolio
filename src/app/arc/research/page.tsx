@@ -16,6 +16,7 @@ import {
   ZoomIn,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ResearchItem {
   title: string;
@@ -218,12 +219,14 @@ export default function ResearchPage() {
               <div className="relative h-full bg-slate-800/30 backdrop-blur-sm border border-white/10 rounded-3xl p-6 hover:scale-[1.02] transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/10 hover:border-green-500/20">
                 {/* Research PDF Preview */}
                 <div className="relative mb-6 overflow-hidden rounded-2xl">
-                  <img
+                  <Image
                     src={
                       paper.pdf ||
                       `https://picsum.photos/400/300?random=${index + 200}`
                     }
                     alt={`${paper.title} research paper preview`}
+                    width={400}
+                    height={192}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -396,12 +399,14 @@ export default function ResearchPage() {
 
             {/* Research Paper Image */}
             <div className="relative">
-              <img
+              <Image
                 src={
                   selectedPaper.pdf ||
                   "https://picsum.photos/800/1200?random=60"
                 }
                 alt={`${selectedPaper.title} Research Paper`}
+                width={800}
+                height={1200}
                 className="w-full h-auto object-contain max-h-[60vh]"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;

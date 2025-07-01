@@ -13,6 +13,7 @@ import {
   ZoomIn,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface CertificationItem {
   title: string;
@@ -244,9 +245,11 @@ export default function CertificationsPage() {
               <div className="relative h-full bg-slate-800/30 backdrop-blur-sm border border-white/10 rounded-3xl p-6 hover:scale-[1.02] transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-500/20">
                 {/* Certificate Image */}
                 <div className="relative mb-6 overflow-hidden rounded-2xl">
-                  <img
+                  <Image
                     src={certification.badge}
                     alt={`${certification.title} certificate`}
+                    width={400}
+                    height={192}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -434,9 +437,11 @@ export default function CertificationsPage() {
 
             {/* Certificate Image */}
             <div className="relative">
-              <img
+              <Image
                 src={selectedCertificate.badge}
                 alt={`${selectedCertificate.title} Certificate`}
+                width={800}
+                height={600}
                 className="w-full h-auto object-contain"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
